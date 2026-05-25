@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Hire a VA — Adobo Solutions</title>
+  <meta name="description" content="Hire a Filipino VA or get in touch with Adobo Solutions. Apply for our Lead Gen program and get AdoBoost Agency free.">
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+  <link href="css/main.css" rel="stylesheet">
+  <style>
+    /* ── LAYOUT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px 36px;
+    }
+    .form-card h2 { color: #fff; margin-bottom: 8px; font-size: 26px; }
+    .form-card > p { font-size: 14.5px; color: var(--text-3); margin-bottom: 30px; line-height: 1.65; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-2); margin-bottom: 7px; letter-spacing: 0.02em; }
+    .form-group label span { color: var(--red-l); margin-left: 2px; }
+    .form-control {
+      width: 100%; background: rgba(255,255,255,0.05);
+      border: 1.5px solid var(--border-2); border-radius: 10px;
+      padding: 13px 16px; font-size: 14.5px; color: var(--text);
+      font-family: inherit; transition: border-color 0.18s, background 0.18s;
+      outline: none; -webkit-appearance: none;
+    }
+    .form-control::placeholder { color: var(--text-3); }
+    .form-control:focus { border-color: var(--blue-l); background: rgba(255,255,255,0.08); }
+    select.form-control { cursor: pointer; }
+    select.form-control option { background: var(--navy-3); color: var(--text); }
+    textarea.form-control { resize: vertical; min-height: 120px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Service checkboxes */
+    .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .checkbox-item { display: flex; align-items: center; gap: 9px; cursor: pointer; padding: 9px 12px; border: 1px solid var(--border); border-radius: 9px; transition: all 0.18s; font-size: 13.5px; color: var(--text-2); }
+    .checkbox-item:hover { border-color: var(--border-2); background: var(--glass-2); }
+    .checkbox-item input { display: none; }
+    .checkbox-item input:checked + .chk-box { background: var(--blue); border-color: var(--blue); }
+    .checkbox-item input:checked + .chk-box::after { opacity: 1; }
+    .chk-box { width: 17px; height: 17px; border-radius: 5px; border: 1.5px solid var(--border-2); flex-shrink: 0; position: relative; transition: all 0.18s; }
+    .chk-box::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 10px; font-weight: 800; color: #fff; opacity: 0; transition: opacity 0.18s; }
+    .checkbox-item:has(input:checked) { border-color: rgba(37,99,235,0.35); background: rgba(37,99,235,0.07); color: var(--text); }
+
+    /* Special offer toggle */
+    .offer-toggle {
+      background: rgba(34,197,94,0.07); border: 1.5px solid rgba(34,197,94,0.2);
+      border-radius: 13px; padding: 18px 20px; margin-bottom: 24px;
+      display: flex; align-items: flex-start; gap: 14px; cursor: pointer;
+    }
+    .offer-toggle input { display: none; }
+    .toggle-box { width: 44px; height: 24px; border-radius: 12px; background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.15); flex-shrink: 0; position: relative; transition: all 0.25s; margin-top: 2px; }
+    .toggle-box::after { content: ''; position: absolute; top: 3px; left: 3px; width: 15px; height: 15px; border-radius: 50%; background: #fff; opacity: 0.4; transition: all 0.25s; }
+    .offer-toggle:has(input:checked) .toggle-box { background: var(--green); border-color: var(--green); }
+    .offer-toggle:has(input:checked) .toggle-box::after { left: 22px; opacity: 1; }
+    .offer-toggle-text h4 { font-size: 14px; font-weight: 700; color: #4ade80; margin-bottom: 3px; }
+    .offer-toggle-text p  { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.55; }
+
+    .submit-btn {
+      width: 100%; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 700;
+      background: var(--blue); color: #fff; border: none; cursor: pointer;
+      font-family: inherit; transition: all 0.18s;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.35);
+    }
+    .submit-btn:hover { background: var(--blue-h); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(37,99,235,0.45); }
+    .form-note { text-align: center; font-size: 12.5px; color: var(--text-3); margin-top: 12px; }
+
+    /* ── SIDEBAR INFO ── */
+    .contact-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .info-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 18px; padding: 28px;
+      transition: all 0.22s;
+    }
+    .info-card:hover { background: var(--glass-2); border-color: var(--border-2); }
+    .info-card .icon { font-size: 28px; margin-bottom: 12px; }
+    .info-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .info-card p  { font-size: 14px; color: var(--text-3); line-height: 1.7; }
+    .info-card a  { color: var(--blue-l); font-weight: 600; }
+    .info-card a:hover { text-decoration: underline; }
+
+    /* Free offer card */
+    .offer-card {
+      background: rgba(34,197,94,0.07); border: 1.5px solid rgba(34,197,94,0.22);
+      border-radius: 18px; padding: 28px;
+    }
+    .offer-card h3 { color: #4ade80; font-size: 18px; margin-bottom: 10px; }
+    .offer-card p  { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+    .offer-card .price-tag { display: flex; align-items: baseline; gap: 8px; margin: 14px 0; }
+    .offer-card .old { font-size: 16px; color: rgba(255,255,255,0.25); text-decoration: line-through; }
+    .offer-card .new { font-size: 36px; font-weight: 900; color: #4ade80; letter-spacing: -0.04em; }
+    .offer-feats { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
+    .offer-feat  { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.55); }
+    .offer-feat .chk { width: 15px; height: 15px; border-radius: 50%; background: rgba(34,197,94,0.15); color: #4ade80; font-size: 7.5px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* Process steps */
+    .process-steps { display: flex; flex-direction: column; gap: 14px; }
+    .process-step { display: flex; gap: 14px; align-items: flex-start; }
+    .step-circle { width: 32px; height: 32px; border-radius: 50%; background: var(--grad); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-info h4  { font-size: 14px; font-weight: 700; color: var(--text-2); margin-bottom: 3px; }
+    .step-info p   { font-size: 13px; color: var(--text-3); line-height: 1.55; }
+
+    /* ── SUCCESS MESSAGE ── */
+    #success-msg {
+      display: none; text-align: center; padding: 40px 20px;
+    }
+    #success-msg .success-icon { font-size: 56px; margin-bottom: 16px; }
+    #success-msg h3 { color: #4ade80; font-size: 24px; margin-bottom: 10px; }
+    #success-msg p  { color: var(--text-3); font-size: 15px; line-height: 1.7; }
+
+    @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 580px) {
+      .form-row { grid-template-columns: 1fr; }
+      .checkbox-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logo.jpg" alt="Adobo Solutions"></a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="adoboost.html">AdoBoost</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.adobosolutions.com/login" class="nav-signin">Sign in</a>
+      <a href="#apply" class="nav-cta">Hire a VA →</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html">Services</a>
+  <a href="adoboost.html">AdoBoost</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://app.adobosolutions.com/login">Sign in</a>
+  <a href="#apply" class="btn btn-primary">Hire a VA →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="grid-texture"></div>
+  <div class="container page-hero-inner">
+    <span class="pill pill-gold">Get Started</span>
+    <h1 style="color:#fff;margin:16px 0 20px">Let's find your<br>perfect VA.</h1>
+    <p class="subhead">Fill out the form below and we'll match you with a qualified Filipino VA within 48 hours. No contracts, no long hiring process.</p>
+  </div>
+</section>
+
+<!-- CONTACT FORM + SIDEBAR -->
+<section class="section" style="background:var(--navy-2)" id="apply">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="form-card reveal">
+        <h2>Hire a VA / Apply</h2>
+        <p>Tell us what you need and we'll get back to you within 24 hours with a matched VA profile.</p>
+
+        <form id="hire-form" onsubmit="handleSubmit(event)" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name <span>*</span></label>
+              <input type="text" class="form-control" name="first_name" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name <span>*</span></label>
+              <input type="text" class="form-control" name="last_name" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Business Email <span>*</span></label>
+            <input type="email" class="form-control" name="email" placeholder="john@company.com" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Company / Business</label>
+              <input type="text" class="form-control" name="company" placeholder="Acme Corp">
+            </div>
+            <div class="form-group">
+              <label>Website</label>
+              <input type="text" class="form-control" name="website" placeholder="acme.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Which VA services are you interested in? <span>*</span></label>
+            <div class="checkbox-grid" style="margin-top:4px">
+              <label class="checkbox-item"><input type="checkbox" name="services" value="customer-support"><span class="chk-box"></span>💼 Customer Support</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="medical-billing"><span class="chk-box"></span>🏥 Medical Billing</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="web-design"><span class="chk-box"></span>🎨 Web Design</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="ai-automation"><span class="chk-box"></span>🤖 AI Automation</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="seo"><span class="chk-box"></span>📈 SEO</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="cold-email"><span class="chk-box"></span>📧 Cold Email / Lead Gen</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="admin-ea"><span class="chk-box"></span>📋 Admin / Executive</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="social-media"><span class="chk-box"></span>📱 Social Media</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="sales"><span class="chk-box"></span>🎯 Sales / Lead Gen</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="custom"><span class="chk-box"></span>✨ Custom / Other</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Engagement Type <span>*</span></label>
+              <select class="form-control" name="engagement" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="part-time">Part-Time (20 hrs/week)</option>
+                <option value="full-time">Full-Time (40 hrs/week)</option>
+                <option value="team">VA Team (multiple VAs)</option>
+                <option value="project">One-off Project</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Monthly Budget</label>
+              <select class="form-control" name="budget">
+                <option value="" disabled selected>Select…</option>
+                <option value="under-500">Under $500</option>
+                <option value="500-1000">$500 – $1,000</option>
+                <option value="1000-2500">$1,000 – $2,500</option>
+                <option value="2500-5000">$2,500 – $5,000</option>
+                <option value="5000+">$5,000+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Tell us more about what you need</label>
+            <textarea class="form-control" name="message" placeholder="Describe the tasks, tools you use, working hours, any specific skills needed, or anything else that will help us match you with the right VA…"></textarea>
+          </div>
+
+          <!-- Lead Gen Free Offer Toggle -->
+          <label class="offer-toggle" id="apply">
+            <input type="checkbox" name="lead_gen_offer" id="lead-gen-toggle">
+            <div class="toggle-box"></div>
+            <div class="offer-toggle-text">
+              <h4>🎁 Yes! I want AdoBoost Agency FREE</h4>
+              <p>Include me in the Lead Gen VA program to get AdoBoost Agency ($299/mo) free as long as I'm a client.</p>
+            </div>
+          </label>
+
+          <div class="form-group">
+            <label>How did you hear about us?</label>
+            <select class="form-control" name="source">
+              <option value="" disabled selected>Select…</option>
+              <option>Google Search</option>
+              <option>Social Media</option>
+              <option>Referral from a friend</option>
+              <option>LinkedIn</option>
+              <option>Facebook / Instagram</option>
+              <option>Cold email</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit My Application →</button>
+          <p class="form-note">We'll respond within 24 hours · No contracts · No spam</p>
+        </form>
+
+        <div id="success-msg">
+          <div class="success-icon">🎉</div>
+          <h3>Application Received!</h3>
+          <p>Thank you! We'll review your application and get back to you within 24 hours with a matched VA profile and next steps.</p>
+          <p style="margin-top:14px">In the meantime, feel free to <a href="adoboost.html" style="color:var(--blue-l)">explore AdoBoost</a> or <a href="services.html" style="color:var(--blue-l)">browse all our services</a>.</p>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar reveal delay-2">
+
+        <!-- Free Offer Card -->
+        <div class="offer-card">
+          <span class="pill pill-green" style="margin-bottom:12px;display:inline-flex">🎁 Special Offer</span>
+          <h3>Get AdoBoost Agency FREE</h3>
+          <p>Hire our Lead Gen VA and get our $299/mo AI cold email platform completely free.</p>
+          <div class="price-tag">
+            <span class="old">$299/mo</span>
+            <span class="new">FREE</span>
+          </div>
+          <div class="offer-feats">
+            <div class="offer-feat"><span class="chk">✓</span>Unlimited campaigns &amp; contacts</div>
+            <div class="offer-feat"><span class="chk">✓</span>Unlimited AI email writing</div>
+            <div class="offer-feat"><span class="chk">✓</span>Unlimited inbox warmup</div>
+            <div class="offer-feat"><span class="chk">✓</span>White-label reporting</div>
+            <div class="offer-feat"><span class="chk">✓</span>Included for life of your contract</div>
+          </div>
+        </div>
+
+        <!-- What Happens Next -->
+        <div class="info-card">
+          <div class="icon">⚡</div>
+          <h3>What happens next?</h3>
+          <div class="process-steps" style="margin-top:16px">
+            <div class="process-step">
+              <div class="step-circle">1</div>
+              <div class="step-info"><h4>We review your application</h4><p>Within 24 hours of submitting, your account manager reviews your requirements.</p></div>
+            </div>
+            <div class="process-step">
+              <div class="step-circle">2</div>
+              <div class="step-info"><h4>We match you with a VA</h4><p>We present you with 1–3 matched VA profiles based on your exact needs and timezone.</p></div>
+            </div>
+            <div class="process-step">
+              <div class="step-circle">3</div>
+              <div class="step-info"><h4>Intro call &amp; onboarding</h4><p>You meet your VA, we set up tools, processes, and your VA is ready within 48 hours.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="info-card">
+          <div class="icon">📬</div>
+          <h3>Other ways to reach us</h3>
+          <p style="margin-bottom:14px">Prefer to talk first? Reach out directly.</p>
+          <p>📧 Email: <a href="mailto:hello@adobosolutions.com">hello@adobosolutions.com</a></p>
+          <p style="margin-top:8px">🏥 Medical Billing enquiries: <a href="mailto:billing@adobosolutions.com">billing@adobosolutions.com</a></p>
+          <p style="margin-top:8px">⚡ AdoBoost support: <a href="mailto:support@adobosolutions.com">support@adobosolutions.com</a></p>
+          <p style="margin-top:8px">🌍 Based in Philippines &nbsp;·&nbsp; Serving global clients</p>
+        </div>
+
+        <!-- AdoBoost standalone -->
+        <div class="info-card">
+          <div class="icon">🚀</div>
+          <h3>Just want AdoBoost?</h3>
+          <p>You can sign up for AdoBoost directly — no VA required. Free trial, no credit card.</p>
+          <a href="https://app.adobosolutions.com/register" class="btn btn-purple btn-sm" style="margin-top:16px;display:inline-flex">Start free trial →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="f-brand"><div class="f-brand-logo"><img src="assets/logo.jpg" alt="Adobo Solutions"></div><p>Elite Filipino VAs powered by AI. Get your VA in 48 hours.</p><div class="f-brand-badges"><span class="f-badge">🇵🇭 PH-Based</span><span class="f-badge">🤖 AI-Powered</span></div></div>
+      <div class="f-col"><h4>Services</h4><a href="services.html#customer-support">Customer Support</a><a href="services.html#medical-billing">Medical Billing</a><a href="services.html#ai-automation">AI Automation</a><a href="services.html#cold-email">Cold Email</a><a href="services.html#seo">SEO</a></div>
+      <div class="f-col"><h4>More Services</h4><a href="services.html#web-design">Web Design</a><a href="services.html#admin-ea">Admin / EA</a><a href="services.html#social-media">Social Media</a><a href="services.html#sales-lead-gen">Sales / Lead Gen</a></div>
+      <div class="f-col"><h4>AdoBoost</h4><a href="adoboost.html">Product Overview</a><a href="pricing.html#adoboost">Pricing</a><a href="https://app.adobosolutions.com/register">Start Free Trial</a></div>
+      <div class="f-col"><h4>Company</h4><a href="about.html">About Us</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="mailto:hello@adobosolutions.com">hello@adobosolutions.com</a></div>
+    </div>
+    <div class="footer-bot"><p>© 2026 Adobo Solutions. All rights reserved. Made with 🇵🇭 in the Philippines.</p><div class="footer-bot-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobile-menu');
+  hb.addEventListener('click',()=>{const o=mm.classList.toggle('open');hb.classList.toggle('open',o);});
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mm.classList.remove('open');hb.classList.remove('open');}));
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('hire-form');
+    const success = document.getElementById('success-msg');
+    /* Basic validation */
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      if (!field.value.trim()) {
+        field.style.borderColor = 'var(--red-l)';
+        valid = false;
+      } else {
+        field.style.borderColor = '';
+      }
+    });
+    if (!valid) return;
+    /* In production, POST to your backend or Formspree/Netlify Forms */
+    /* For now, show success state */
+    form.style.display = 'none';
+    success.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

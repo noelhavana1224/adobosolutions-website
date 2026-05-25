@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adobo Solutions — Elite Filipino VAs Powered by AI</title>
+  <meta name="description" content="World-class Filipino virtual assistants for customer support, medical billing, cold email, AI automation, social media, SEO, and more. Powered by AdoBoost AI.">
+  <meta property="og:title" content="Adobo Solutions — Elite Filipino VAs Powered by AI">
+  <meta property="og:description" content="Hire top Filipino VAs and scale your business. Get AdoBoost Agency free with our Lead Gen program.">
+  <meta property="og:url" content="https://adobosolutions.com">
+  <link rel="canonical" href="https://adobosolutions.com">
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+  <link href="css/main.css" rel="stylesheet">
+  <style>
+    /* ── HERO ── */
+    #hero {
+      background: var(--grad-hero);
+      min-height: 100vh; display: flex; align-items: center;
+      padding-top: 68px; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; top: -120px; right: -80px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(37,99,235,0.22) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: ''; position: absolute; bottom: -120px; left: -80px;
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(124,58,237,0.16) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 80px 24px 100px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .hero-text .pill { margin-bottom: 22px; }
+    .hero-text h1 { color: #fff; margin-bottom: 22px; }
+    .hero-text .subhead { color: rgba(255,255,255,0.56); margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.32); }
+    .hero-trust-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+
+    /* Hero visual — floating stat cards */
+    .hero-visual { position: relative; height: 420px; }
+    .stat-card {
+      position: absolute; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 20px 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .stat-card .num   { font-size: 38px; font-weight: 900; letter-spacing: -0.04em; }
+    .stat-card .lbl   { font-size: 12px; color: var(--text-3); margin-top: 4px; font-weight: 500; }
+    .stat-card .icon  { font-size: 22px; margin-bottom: 10px; }
+    .stat-card-a { top: 0; left: 0; animation: float1 5s ease-in-out infinite; }
+    .stat-card-b { top: 30px; right: 0; animation: float2 6s ease-in-out infinite; }
+    .stat-card-c { bottom: 60px; left: 20px; animation: float3 4.5s ease-in-out infinite; }
+    .stat-card-d { bottom: 0; right: 30px; animation: float1 5.5s ease-in-out infinite 1s; }
+    .va-badge {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      background: var(--grad); border-radius: 50%; width: 120px; height: 120px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 0 60px rgba(37,99,235,0.45), 0 0 0 20px rgba(37,99,235,0.06);
+      font-weight: 900; font-size: 13px; text-align: center; line-height: 1.3;
+    }
+    .va-badge span { font-size: 28px; }
+    @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+    @keyframes float3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    /* ── TRUST BAR ── */
+    #trust-bar { background: var(--navy-3); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 22px 0; }
+    .trust-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .trust-item { display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: var(--text-3); white-space: nowrap; }
+    .trust-item strong { color: var(--text-2); font-weight: 700; }
+    .trust-dot { width: 1px; height: 22px; background: var(--border-2); flex-shrink: 0; }
+
+    /* ── SERVICES OVERVIEW ── */
+    #services-overview { background: var(--navy-2); }
+    .services-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; }
+    .svc-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 22px 18px; text-align: center;
+      transition: all 0.22s; text-decoration: none;
+    }
+    .svc-card:hover { background: var(--glass-2); border-color: var(--border-2); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .svc-card .svc-icon { font-size: 28px; margin-bottom: 10px; }
+    .svc-card h4 { font-size: 13px; font-weight: 700; color: var(--text-2); line-height: 1.35; }
+    .svc-card .svc-tag { font-size: 10px; color: var(--text-3); margin-top: 5px; }
+
+    /* ── ADOBOOST PROMO ── */
+    #adoboost-promo {
+      background: linear-gradient(160deg, #05081a 0%, #090b24 40%, #110826 70%, #050815 100%);
+      position: relative; overflow: hidden;
+    }
+    #adoboost-promo::before {
+      content: ''; position: absolute; top: -100px; right: -60px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 65%);
+    }
+    .promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
+    .promo-left .pill { margin-bottom: 18px; }
+    .promo-left h2 { color: #fff; margin-bottom: 18px; }
+    .promo-left p  { color: rgba(255,255,255,0.55); font-size: 16px; line-height: 1.75; margin-bottom: 28px; }
+    .promo-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+    .promo-feat { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.65); }
+    .promo-feat .chk { width: 18px; height: 18px; border-radius: 50%; background: rgba(37,99,235,0.2); border: 1px solid rgba(37,99,235,0.4); display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+    /* mini app mockup */
+    .mini-mockup { background: #0d1424; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.6); }
+    .mm-bar { background: #080f1e; padding: 10px 14px; display: flex; align-items: center; gap: 7px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .mm-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .mm-dot.r { background:#ff5f57; } .mm-dot.y { background:#febc2e; } .mm-dot.g { background:#28c840; }
+    .mm-url { flex:1; margin: 0 8px; background: rgba(255,255,255,0.04); border-radius: 4px; padding: 3px 9px; font-size: 10px; color: rgba(255,255,255,0.25); font-family: monospace; }
+    .mm-body { padding: 16px; }
+    .mm-title { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .mm-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 12px; }
+    .mm-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 10px; }
+    .mm-stat-v { font-size: 20px; font-weight: 900; color: #fff; }
+    .mm-stat-l { font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+    .mm-row { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 9px 11px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .mm-row-n { font-size: 11px; font-weight: 600; color: #e2e8f0; }
+    .mm-row-m { font-size: 9px; color: rgba(255,255,255,0.28); margin-top: 1px; }
+    .mm-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 20px; background: rgba(34,197,94,0.15); color: #4ade80; }
+    .mm-ai { margin-bottom: 10px; background: linear-gradient(135deg,rgba(124,58,237,0.22),rgba(37,99,235,0.18)); border: 1px solid rgba(124,58,237,0.3); border-radius: 7px; padding: 7px 10px; font-size: 10px; color: #c4b5fd; font-weight: 600; }
+
+    /* ── LEAD GEN OFFER ── */
+    #lead-gen-offer {
+      background: linear-gradient(135deg, #0f1a08 0%, #1a2e0a 40%, #162606 70%, #0a1508 100%);
+      border-top: 1px solid rgba(34,197,94,0.15);
+      border-bottom: 1px solid rgba(34,197,94,0.15);
+      position: relative; overflow: hidden;
+    }
+    #lead-gen-offer::before {
+      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 65%);
+    }
+    .offer-inner { position: relative; z-index: 1; text-align: center; }
+    .offer-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.28); color: #4ade80; font-size: 12px; font-weight: 700; padding: 6px 18px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; }
+    .offer-inner h2 { color: #fff; margin-bottom: 18px; }
+    .offer-inner > p { color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto 36px; font-size: 17px; line-height: 1.7; }
+    .offer-box {
+      max-width: 700px; margin: 0 auto 40px;
+      background: rgba(34,197,94,0.06); border: 1.5px solid rgba(34,197,94,0.22);
+      border-radius: 20px; padding: 32px;
+    }
+    .offer-box h3 { color: #4ade80; font-size: 22px; margin-bottom: 10px; }
+    .offer-box p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; }
+    .offer-price { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 20px 0; flex-wrap: wrap; }
+    .offer-price .old { font-size: 22px; font-weight: 700; color: rgba(255,255,255,0.3); text-decoration: line-through; }
+    .offer-price .new { font-size: 40px; font-weight: 900; color: #4ade80; letter-spacing: -0.04em; }
+    .offer-price .per { font-size: 14px; color: rgba(255,255,255,0.4); }
+    .offer-features { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 16px; }
+    .offer-feat { display: flex; align-items: center; gap: 7px; font-size: 13px; color: rgba(255,255,255,0.55); }
+    .offer-feat .chk { width: 16px; height: 16px; border-radius: 50%; background: rgba(34,197,94,0.2); color: #4ade80; font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+
+    /* ── WHY US ── */
+    #why-us { background: var(--navy-2); }
+    .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .why-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 32px 24px;
+      transition: all 0.22s;
+    }
+    .why-card:hover { background: var(--glass-2); border-color: var(--border-2); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .why-icon { font-size: 32px; margin-bottom: 16px; }
+    .why-num { font-size: 42px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px; }
+    .why-card h4 { font-size: 15px; font-weight: 700; color: var(--text-2); margin-bottom: 8px; }
+    .why-card p  { font-size: 13.5px; color: var(--text-3); line-height: 1.65; }
+
+    /* ── HOW IT WORKS ── */
+    #how-it-works { background: var(--navy); }
+    .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; position: relative; }
+    .steps-grid::before {
+      content: ''; position: absolute; top: 32px;
+      left: calc(16.67% + 8px); right: calc(16.67% + 8px);
+      height: 2px; background: linear-gradient(90deg, transparent, var(--blue-l), var(--blue-l), transparent); opacity: 0.25;
+    }
+    .step-card { text-align: center; padding: 0 12px; }
+    .step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--grad); color: #fff; font-size: 24px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 22px; box-shadow: 0 8px 28px rgba(37,99,235,0.35);
+      position: relative; z-index: 1;
+    }
+    .step-card h3 { color: var(--text); margin-bottom: 12px; }
+    .step-card p  { font-size: 15px; color: var(--text-3); line-height: 1.7; }
+
+    /* ── CTA SECTION ── */
+    #cta {
+      background: linear-gradient(155deg, #05091a 0%, #0a0f28 40%, #14082a 70%, #05091a 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 60%);
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-inner h2 { color: #fff; margin-bottom: 16px; }
+    .cta-inner p  { color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 36px; font-size: 17px; }
+    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.28); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(3,1fr); }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 60px 24px 80px; }
+      .hero-visual { order: -1; height: 300px; }
+      .stat-card { transform: scale(0.85); transform-origin: top left; }
+      .promo-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+      .steps-grid::before { display: none; }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 580px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-btns .btn { width: 100%; max-width: 320px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.jpg" alt="Adobo Solutions">
+    </a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="adoboost.html">AdoBoost</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.adobosolutions.com/login" class="nav-signin">Sign in</a>
+      <a href="contact.html" class="nav-cta">Hire a VA →</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html">Services</a>
+  <a href="adoboost.html">AdoBoost</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://app.adobosolutions.com/login">Sign in</a>
+  <a href="contact.html" class="btn btn-primary">Hire a VA →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-texture"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="pill pill-gold">🇵🇭 Philippines #1 AI-Powered VA Agency</span>
+      <h1>Elite Filipino VAs.<br><em class="grad-text">AI-Powered</em> Results.</h1>
+      <p class="subhead">From cold email outreach to medical billing — our vetted Filipino virtual assistants handle the work while AI handles the tools. Scale faster. Pay less. Sleep better.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary btn-lg">Hire a VA Now →</a>
+        <a href="services.html" class="btn btn-outline-w btn-lg">See All Services</a>
+      </div>
+      <div class="hero-trust">
+        <span>500+ Businesses Served</span>
+        <span class="hero-trust-dot"></span>
+        <span>Philippines-Based Talent</span>
+        <span class="hero-trust-dot"></span>
+        <span>AI-Augmented Workflows</span>
+        <span class="hero-trust-dot"></span>
+        <span>48-Hr Onboarding</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="stat-card stat-card-a">
+        <div class="icon">🎯</div>
+        <div class="num grad-text">500+</div>
+        <div class="lbl">Clients worldwide</div>
+      </div>
+      <div class="stat-card stat-card-b">
+        <div class="icon">⭐</div>
+        <div class="num" style="color:var(--gold-l)">4.9</div>
+        <div class="lbl">Average client rating</div>
+      </div>
+      <div class="va-badge">
+        <span>🇵🇭</span>
+        TOP<br>VAs
+      </div>
+      <div class="stat-card stat-card-c">
+        <div class="icon">🤖</div>
+        <div class="num" style="color:#a78bfa">AI</div>
+        <div class="lbl">Powered workflows</div>
+      </div>
+      <div class="stat-card stat-card-d">
+        <div class="icon">⚡</div>
+        <div class="num" style="color:#4ade80">48h</div>
+        <div class="lbl">Onboarding time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">💼 <strong>Customer Support</strong> VAs available now</div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">🏥 <strong>Medical Billing</strong> specialists on deck</div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">🤖 <strong>AI Automation</strong> experts ready</div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">📧 <strong>Cold Email</strong> VAs + AdoBoost included</div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">🎨 <strong>Web Design</strong> &amp; SEO teams standing by</div>
+  </div>
+</div>
+
+<!-- SERVICES OVERVIEW -->
+<section id="services-overview" class="section-sm">
+  <div class="container">
+    <div class="section-head center">
+      <span class="pill pill-blue">What We Do</span>
+      <h2 style="margin:14px 0 16px">One agency. Every VA need.</h2>
+      <p class="subhead">Whether you need one VA or a full team, we have the talent and the tools.</p>
+    </div>
+    <div class="services-grid">
+      <a href="services.html#customer-support" class="svc-card reveal">
+        <div class="svc-icon">💼</div>
+        <h4>Customer Support</h4>
+        <div class="svc-tag">Live chat · Email · Tickets</div>
+      </a>
+      <a href="services.html#medical-billing" class="svc-card reveal delay-1">
+        <div class="svc-icon">🏥</div>
+        <h4>Medical Billing</h4>
+        <div class="svc-tag">Claims · Coding · AR follow-up</div>
+      </a>
+      <a href="services.html#web-design" class="svc-card reveal delay-2">
+        <div class="svc-icon">🎨</div>
+        <h4>Web Design</h4>
+        <div class="svc-tag">WordPress · Webflow · Shopify</div>
+      </a>
+      <a href="services.html#ai-automation" class="svc-card reveal delay-3">
+        <div class="svc-icon">🤖</div>
+        <h4>AI Automation VA</h4>
+        <div class="svc-tag">Zapier · Make · n8n · GPT</div>
+      </a>
+      <a href="services.html#seo" class="svc-card reveal delay-4">
+        <div class="svc-icon">📈</div>
+        <h4>SEO</h4>
+        <div class="svc-tag">On-page · Technical · Content</div>
+      </a>
+      <a href="services.html#cold-email" class="svc-card reveal">
+        <div class="svc-icon">📧</div>
+        <h4>Cold Email / Outreach</h4>
+        <div class="svc-tag">AdoBoost-powered</div>
+      </a>
+      <a href="services.html#admin-ea" class="svc-card reveal delay-1">
+        <div class="svc-icon">📋</div>
+        <h4>Admin / Executive</h4>
+        <div class="svc-tag">Calendar · Inbox · Research</div>
+      </a>
+      <a href="services.html#social-media" class="svc-card reveal delay-2">
+        <div class="svc-icon">📱</div>
+        <h4>Social Media</h4>
+        <div class="svc-tag">Content · Scheduling · DMs</div>
+      </a>
+      <a href="services.html#sales-lead-gen" class="svc-card reveal delay-3">
+        <div class="svc-icon">🎯</div>
+        <h4>Sales / Lead Gen</h4>
+        <div class="svc-tag">Prospecting · CRM · Booking</div>
+      </a>
+      <a href="services.html#custom" class="svc-card reveal delay-4" style="border-color:rgba(245,158,11,0.2);background:rgba(245,158,11,0.04)">
+        <div class="svc-icon">✨</div>
+        <h4>Custom VA</h4>
+        <div class="svc-tag" style="color:var(--gold)">Tell us what you need</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="services.html" class="btn btn-glass">Explore All Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ADOBOOST PROMO -->
+<section id="adoboost-promo" class="section">
+  <div class="grid-texture-sm"></div>
+  <div class="container">
+    <div class="promo-grid">
+      <div class="promo-left reveal">
+        <span class="pill pill-purple">⚡ Our Secret Weapon</span>
+        <h2 style="color:#fff;margin:16px 0 18px">We built the AI tool<br>our clients swear by.</h2>
+        <p>AdoBoost is our in-house AI-powered cold email platform. Our Lead Gen VAs use it every day — and when you hire us for lead generation, you get the Agency Plan completely free.</p>
+        <div class="promo-features">
+          <div class="promo-feat"><span class="chk">✓</span>AI writes full cold email sequences in seconds</div>
+          <div class="promo-feat"><span class="chk">✓</span>AI-powered inbox warmup — no domain damage</div>
+          <div class="promo-feat"><span class="chk">✓</span>Humanized sending — looks like a real human</div>
+          <div class="promo-feat"><span class="chk">✓</span>Full open, click, reply &amp; bounce tracking</div>
+          <div class="promo-feat"><span class="chk">✓</span>Inbox rotation across unlimited accounts</div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="adoboost.html" class="btn btn-purple">See AdoBoost →</a>
+          <a href="https://app.adobosolutions.com/register" class="btn btn-glass">Try it free</a>
+        </div>
+      </div>
+      <div class="promo-right reveal delay-2">
+        <div class="mini-mockup">
+          <div class="mm-bar">
+            <span class="mm-dot r"></span>
+            <span class="mm-dot y"></span>
+            <span class="mm-dot g"></span>
+            <span class="mm-url">app.adobosolutions.com/campaigns</span>
+          </div>
+          <div class="mm-body">
+            <div class="mm-ai">✨ AI wrote your 3-step sequence in 12 seconds</div>
+            <div class="mm-title">Campaign Dashboard</div>
+            <div class="mm-stats">
+              <div class="mm-stat">
+                <div class="mm-stat-v">342</div>
+                <div class="mm-stat-l">Sent today</div>
+              </div>
+              <div class="mm-stat">
+                <div class="mm-stat-v" style="color:#60a5fa">74</div>
+                <div class="mm-stat-l">Opened</div>
+              </div>
+              <div class="mm-stat">
+                <div class="mm-stat-v" style="color:#4ade80">23</div>
+                <div class="mm-stat-l">Replied</div>
+              </div>
+            </div>
+            <div class="mm-row">
+              <div>
+                <div class="mm-row-n">Q3 SaaS Decision Makers</div>
+                <div class="mm-row-m">187 sent · 3-step AI sequence</div>
+              </div>
+              <span class="mm-badge">Active</span>
+            </div>
+            <div class="mm-row">
+              <div>
+                <div class="mm-row-n">Agency Founder Outreach</div>
+                <div class="mm-row-m">155 sent · AI written · Mon–Fri</div>
+              </div>
+              <span class="mm-badge">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD GEN FREE OFFER -->
+<section id="lead-gen-offer" class="section">
+  <div class="container">
+    <div class="offer-inner">
+      <div class="offer-badge">🎁 Limited Time Offer</div>
+      <h2>Hire a Lead Gen VA.<br>Get AdoBoost <span class="gold-text">Agency Plan FREE.</span></h2>
+      <p>Sign up for our Lead Generation program and we'll give you our $299/month AdoBoost Agency plan — completely free for as long as you're with us.</p>
+      <div class="offer-box reveal">
+        <h3>🚀 Lead Generation Program</h3>
+        <p>Our elite Lead Gen VAs manage your entire outreach pipeline — from prospect research to cold email campaigns to appointment setting — all powered by AdoBoost AI.</p>
+        <div class="offer-price">
+          <span class="old">$299/mo AdoBoost Agency</span>
+          <span class="new">FREE</span>
+          <span class="per">when you join our Lead Gen program</span>
+        </div>
+        <div class="offer-features">
+          <div class="offer-feat"><span class="chk">✓</span>Unlimited AdoBoost campaigns</div>
+          <div class="offer-feat"><span class="chk">✓</span>Unlimited AI email writing</div>
+          <div class="offer-feat"><span class="chk">✓</span>Unlimited inbox warmup</div>
+          <div class="offer-feat"><span class="chk">✓</span>250,000 contacts</div>
+          <div class="offer-feat"><span class="chk">✓</span>White-label reports</div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-gold btn-xl">Claim Free Agency Plan →</a>
+      <p class="cta-note">No contracts · Cancel anytime · Real humans managing your pipeline</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ADOBO SOLUTIONS -->
+<section id="why-us" class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="pill pill-blue">Why Choose Us</span>
+      <h2 style="margin:14px 0 16px">The Adobo Difference.</h2>
+      <p class="subhead">We're not just a staffing agency. We're a technology-powered VA firm built for modern businesses.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🇵🇭</div>
+        <div class="why-num grad-text">100%</div>
+        <h4>Filipino Talent</h4>
+        <p>Every VA is based in the Philippines — highly educated, English-proficient, culturally aligned with Western businesses, and genuinely hardworking.</p>
+      </div>
+      <div class="why-card reveal delay-1">
+        <div class="why-icon">🤖</div>
+        <div class="why-num" style="color:#a78bfa">AI+</div>
+        <h4>AI-Augmented VAs</h4>
+        <p>Our VAs are trained on the latest AI tools — ChatGPT, Claude, Zapier, Make, n8n, and AdoBoost. They don't just do tasks, they automate them.</p>
+      </div>
+      <div class="why-card reveal delay-2">
+        <div class="why-icon">💰</div>
+        <div class="why-num" style="color:var(--gold-l)">70%</div>
+        <h4>Cost Savings</h4>
+        <p>Up to 70% less than hiring a US or UK equivalent. Same quality, same output, a fraction of the cost. Your budget goes 3–5x further with us.</p>
+      </div>
+      <div class="why-card reveal delay-3">
+        <div class="why-icon">⚡</div>
+        <div class="why-num" style="color:#4ade80">48h</div>
+        <h4>Fast Onboarding</h4>
+        <p>We match you with a qualified VA within 48 hours of signing up. No lengthy hiring process, no job posts, no resume reviews — just results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="pill pill-blue">How It Works</span>
+      <h2 style="margin:14px 0 16px">From zero to a full team in 3 steps.</h2>
+      <p class="subhead">Our streamlined process gets your VA up and running fast, with no friction and no surprises.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">1</div>
+        <h3>Tell us what you need</h3>
+        <p>Fill out our quick discovery form. Tell us the tasks, hours, skills, and budget. We'll match you with a pre-vetted VA who fits your exact requirements within 24–48 hours.</p>
+      </div>
+      <div class="step-card reveal delay-2">
+        <div class="step-num">2</div>
+        <h3>Meet your VA &amp; get started</h3>
+        <p>We introduce you to your matched VA, set up tools and processes, and provide a structured onboarding. Your VA is briefed and ready to hit the ground running from day one.</p>
+      </div>
+      <div class="step-card reveal delay-4">
+        <div class="step-num">3</div>
+        <h3>Scale and grow together</h3>
+        <p>Your VA delivers consistent results with full accountability. Add more VAs as you grow, switch roles anytime, and access our full suite of AI tools at no extra cost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="section">
+  <div class="grid-texture"></div>
+  <div class="container">
+    <div class="cta-inner">
+      <span class="pill pill-gold" style="margin-bottom:20px;display:inline-flex">🚀 Ready to scale?</span>
+      <h2 style="color:#fff">Your next VA is waiting.<br>Let's put them to work.</h2>
+      <p>Join 500+ businesses who scaled their operations with elite Filipino VAs and AI-powered tools.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-primary btn-xl">Hire a VA Today →</a>
+        <a href="adoboost.html" class="btn btn-glass btn-xl">Explore AdoBoost</a>
+      </div>
+      <p class="cta-note">No contracts &nbsp;·&nbsp; 48-hr onboarding &nbsp;·&nbsp; Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="f-brand">
+        <div class="f-brand-logo">
+          <img src="assets/logo.jpg" alt="Adobo Solutions">
+        </div>
+        <p>Elite Filipino virtual assistants powered by AI. Helping global businesses scale smarter, faster, and cheaper.</p>
+        <div class="f-brand-badges">
+          <span class="f-badge">🇵🇭 PH-Based</span>
+          <span class="f-badge">🤖 AI-Powered</span>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Services</h4>
+        <a href="services.html#customer-support">Customer Support</a>
+        <a href="services.html#medical-billing">Medical Billing</a>
+        <a href="services.html#ai-automation">AI Automation</a>
+        <a href="services.html#cold-email">Cold Email / Outreach</a>
+        <a href="services.html#seo">SEO</a>
+      </div>
+      <div class="f-col">
+        <h4>More Services</h4>
+        <a href="services.html#web-design">Web Design</a>
+        <a href="services.html#admin-ea">Admin / Executive</a>
+        <a href="services.html#social-media">Social Media</a>
+        <a href="services.html#sales-lead-gen">Sales / Lead Gen</a>
+        <a href="services.html#custom">Custom VA</a>
+      </div>
+      <div class="f-col">
+        <h4>AdoBoost</h4>
+        <a href="adoboost.html">Product Overview</a>
+        <a href="adoboost.html#ai-features">AI Features</a>
+        <a href="pricing.html#adoboost">Pricing</a>
+        <a href="https://app.adobosolutions.com/register">Start Free Trial</a>
+        <a href="https://app.adobosolutions.com/login">Sign In</a>
+      </div>
+      <div class="f-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html#apply">Hire a VA</a>
+        <a href="mailto:hello@adobosolutions.com">hello@adobosolutions.com</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <p>© 2026 Adobo Solutions. All rights reserved. Made with 🇵🇭 in the Philippines.</p>
+      <div class="footer-bot-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Anti-Spam Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Nav scroll */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+  /* Hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('open'); });
+  });
+  /* Reveal */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  /* Smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Adobo Solutions</title>
+  <meta name="description" content="Learn about Adobo Solutions — a Philippines-based AI-powered VA agency helping global businesses scale smarter with elite Filipino talent.">
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+  <link href="css/main.css" rel="stylesheet">
+  <style>
+    /* ── STORY ── */
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .story-left h2 { margin: 14px 0 20px; }
+    .story-left p  { font-size: 16px; color: var(--text-3); line-height: 1.8; margin-bottom: 18px; }
+    .story-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+    .story-stat { background: var(--glass); border: 1px solid var(--border); border-radius: var(--r); padding: 22px; text-align: center; }
+    .story-stat .num { font-size: 38px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 4px; }
+    .story-stat .lbl { font-size: 13px; color: var(--text-3); }
+    .story-right { position: relative; }
+    .story-img-box {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 24px; padding: 36px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .story-img-box::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%);
+    }
+    .story-logo { height: 80px; margin: 0 auto 28px; background: #fff; border-radius: 12px; padding: 8px 20px; }
+    .story-tagline { font-size: 18px; font-weight: 800; color: #fff; line-height: 1.4; margin-bottom: 16px; }
+    .story-ph { font-size: 48px; margin-bottom: 12px; }
+    .story-sub { font-size: 14px; color: var(--text-3); line-height: 1.7; }
+
+    /* ── MISSION / VALUES ── */
+    .mv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .mv-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 32px 26px;
+      transition: all 0.22s;
+    }
+    .mv-card:hover { background: var(--glass-2); border-color: var(--border-2); transform: translateY(-4px); }
+    .mv-icon { font-size: 36px; margin-bottom: 16px; }
+    .mv-card h3 { margin-bottom: 12px; color: var(--text); }
+    .mv-card p  { font-size: 14.5px; color: var(--text-3); line-height: 1.72; }
+
+    /* ── DIFFERENTIATORS ── */
+    .diff-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .diff-card {
+      display: flex; gap: 18px; align-items: flex-start;
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 26px;
+      transition: all 0.22s;
+    }
+    .diff-card:hover { background: var(--glass-2); border-color: var(--border-2); }
+    .diff-icon { font-size: 30px; flex-shrink: 0; margin-top: 2px; }
+    .diff-text h4 { font-size: 16px; margin-bottom: 8px; color: var(--text); }
+    .diff-text p  { font-size: 14px; color: var(--text-3); line-height: 1.7; }
+
+    /* ── ADOBOOST ORIGIN ── */
+    #adoboost-origin {
+      background: linear-gradient(160deg, #05081a 0%, #090b24 40%, #110826 70%, #050815 100%);
+      position: relative; overflow: hidden;
+    }
+    #adoboost-origin::before { content:''; position:absolute; top:-100px; right:-80px; width:500px; height:500px; background:radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 65%); }
+    .origin-inner { position: relative; z-index: 1; }
+    .origin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .origin-left h2 { color: #fff; margin: 14px 0 18px; }
+    .origin-left p  { color: rgba(255,255,255,0.55); font-size: 16px; line-height: 1.8; margin-bottom: 18px; }
+    .origin-quote {
+      background: rgba(124,58,237,0.1); border-left: 3px solid var(--purple);
+      border-radius: 0 12px 12px 0; padding: 20px 24px; margin-top: 28px;
+    }
+    .origin-quote p { font-size: 15px; font-style: italic; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 10px; }
+    .origin-quote cite { font-size: 13px; color: rgba(255,255,255,0.4); font-style: normal; }
+    .origin-right {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 32px; text-align: center;
+    }
+    .origin-right h3 { color: #fff; font-size: 22px; margin-bottom: 16px; }
+    .adoboost-logo { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -0.04em; margin-bottom: 20px; }
+    .adoboost-logo span { color: #60a5fa; }
+    .origin-feats { display: flex; flex-direction: column; gap: 10px; text-align: left; margin-bottom: 24px; }
+    .origin-feat { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.65); }
+    .origin-feat .chk { width: 17px; height: 17px; border-radius: 50%; background: rgba(124,58,237,0.2); color: #a78bfa; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ── PH PRIDE ── */
+    .ph-section {
+      background: linear-gradient(135deg, rgba(220,38,38,0.08) 0%, rgba(37,99,235,0.08) 50%, rgba(245,158,11,0.06) 100%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 64px 0; text-align: center;
+    }
+    .ph-section h2 { color: #fff; margin-bottom: 18px; }
+    .ph-section p  { color: rgba(255,255,255,0.55); max-width: 640px; margin: 0 auto; font-size: 17px; line-height: 1.8; }
+    .ph-flags { font-size: 48px; margin-bottom: 24px; letter-spacing: 8px; }
+
+    @media (max-width: 1024px) { .mv-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: 1fr; }
+      .origin-grid { grid-template-columns: 1fr; }
+      .diff-grid   { grid-template-columns: 1fr; }
+      .mv-grid     { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logo.jpg" alt="Adobo Solutions"></a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="adoboost.html">AdoBoost</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.adobosolutions.com/login" class="nav-signin">Sign in</a>
+      <a href="contact.html" class="nav-cta">Hire a VA →</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html">Services</a>
+  <a href="adoboost.html">AdoBoost</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://app.adobosolutions.com/login">Sign in</a>
+  <a href="contact.html" class="btn btn-primary">Hire a VA →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="grid-texture"></div>
+  <div class="container page-hero-inner">
+    <span class="pill pill-gold">🇵🇭 Our Story</span>
+    <h1 style="color:#fff;margin:16px 0 20px">Built in the Philippines.<br>Serving the world.</h1>
+    <p class="subhead">We're a team of Filipinos who believe elite talent shouldn't be gated by geography — and that AI should make every VA 10x more powerful.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section" style="background:var(--navy-2)">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-left reveal">
+        <span class="pill pill-blue">How We Started</span>
+        <h2 style="margin:16px 0 20px">We started as a VA agency. We became a technology company.</h2>
+        <p>Adobo Solutions was born from a simple frustration: businesses were wasting massive amounts of money on US and UK staff for tasks that talented, English-proficient Filipinos could handle just as well — often better — at a fraction of the cost.</p>
+        <p>We started matching Filipino VAs with global clients. But we quickly realized the biggest problem wasn't finding talent — it was equipping them with the right tools. Most VA agencies just hire people. We build the systems around them.</p>
+        <p>So we built AdoBoost — our AI-powered cold email platform — for our own Lead Gen VAs. It worked so well we opened it up to the world. Today it's used by 500+ businesses independently, and it's the secret weapon behind every Adobo Solutions Lead Gen client.</p>
+        <div class="story-stats">
+          <div class="story-stat">
+            <div class="num grad-text">500+</div>
+            <div class="lbl">Businesses served</div>
+          </div>
+          <div class="story-stat">
+            <div class="num" style="color:var(--gold-l)">4.9★</div>
+            <div class="lbl">Average client rating</div>
+          </div>
+          <div class="story-stat">
+            <div class="num" style="color:#4ade80">50+</div>
+            <div class="lbl">Active VAs</div>
+          </div>
+          <div class="story-stat">
+            <div class="num" style="color:#a78bfa">3+</div>
+            <div class="lbl">Years of operations</div>
+          </div>
+        </div>
+      </div>
+      <div class="story-right reveal delay-2">
+        <div class="story-img-box">
+          <div class="story-ph">🇵🇭</div>
+          <img src="assets/logo.jpg" alt="Adobo Solutions" class="story-logo">
+          <div class="story-tagline">"Elite Filipino Talent.<br>AI-Powered Performance."</div>
+          <p class="story-sub">Headquartered in the Philippines. Serving clients across the US, UK, Canada, Australia, and beyond.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / VALUES -->
+<section class="section" style="background:var(--navy)">
+  <div class="container">
+    <div class="section-head center">
+      <span class="pill pill-gold">Our Foundation</span>
+      <h2 style="margin:14px 0 16px">Mission, Vision &amp; Values</h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card reveal">
+        <div class="mv-icon">🎯</div>
+        <h3>Our Mission</h3>
+        <p>To empower global businesses with world-class Filipino virtual assistants and AI-powered tools that deliver real results — not just hours logged. We believe outsourcing should be a competitive advantage, not just a cost-cutting move.</p>
+      </div>
+      <div class="mv-card reveal delay-1">
+        <div class="mv-icon">🔭</div>
+        <h3>Our Vision</h3>
+        <p>A world where every business — regardless of size or budget — has access to elite talent and enterprise-grade AI tools. We're building the bridge between Filipino excellence and global opportunity.</p>
+      </div>
+      <div class="mv-card reveal delay-2">
+        <div class="mv-icon">💡</div>
+        <h3>Our Values</h3>
+        <p><strong style="color:var(--text-2)">Results over hours.</strong> We measure success by outcomes, not time logged. <strong style="color:var(--text-2)">Transparency first.</strong> No hidden fees, no surprises. <strong style="color:var(--text-2)">Filipino pride.</strong> We celebrate the talent and work ethic of every VA on our team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES US DIFFERENT -->
+<section class="section" style="background:var(--navy-2)">
+  <div class="container">
+    <div class="section-head center">
+      <span class="pill pill-blue">The Adobo Difference</span>
+      <h2 style="margin:14px 0 16px">Not just another VA agency.</h2>
+      <p class="subhead">Most VA agencies just place people. We build systems, provide tools, and stay accountable for results.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card reveal">
+        <div class="diff-icon">🤖</div>
+        <div class="diff-text">
+          <h4>We built the tools our VAs use</h4>
+          <p>AdoBoost started as an internal tool for our own Lead Gen VAs. We didn't buy a third-party platform — we built exactly what works. That means our VAs are experts in tools built specifically for the job they do.</p>
+        </div>
+      </div>
+      <div class="diff-card reveal delay-1">
+        <div class="diff-icon">🎓</div>
+        <div class="diff-text">
+          <h4>Every VA is trained before placement</h4>
+          <p>We don't just source talent — we train it. Every VA goes through our internal program covering AI tools, communication protocols, reporting standards, and role-specific skills before they ever meet a client.</p>
+        </div>
+      </div>
+      <div class="diff-card reveal delay-2">
+        <div class="diff-icon">📊</div>
+        <div class="diff-text">
+          <h4>Full accountability and reporting</h4>
+          <p>Weekly reports, daily updates, and a dedicated account manager mean you always know exactly what your VA is working on and what they've accomplished. We track output, not just time.</p>
+        </div>
+      </div>
+      <div class="diff-card reveal delay-3">
+        <div class="diff-icon">🔄</div>
+        <div class="diff-text">
+          <h4>Free replacement guarantee</h4>
+          <p>If your VA isn't delivering, we'll replace them — free of charge, within 48 hours. We stand behind our matching process and we don't leave clients stranded if it doesn't work out.</p>
+        </div>
+      </div>
+      <div class="diff-card reveal">
+        <div class="diff-icon">🇵🇭</div>
+        <div class="diff-text">
+          <h4>100% Philippines-based talent</h4>
+          <p>Every single VA is based in the Philippines — highly educated, English-proficient (often at native level), and deeply familiar with Western business culture. No offshoring to unexpected countries.</p>
+        </div>
+      </div>
+      <div class="diff-card reveal delay-1">
+        <div class="diff-icon">💰</div>
+        <div class="diff-text">
+          <h4>Transparent, flat-rate pricing</h4>
+          <p>No per-task fees, no hidden charges, no annual lock-in. You pay a flat monthly rate per VA. That's it. If you need to scale up or down, it's a simple conversation with your account manager.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADOBOOST ORIGIN -->
+<section id="adoboost-origin" class="section">
+  <div class="container origin-inner">
+    <div class="origin-grid">
+      <div class="origin-left reveal">
+        <span class="pill pill-purple">How AdoBoost Was Born</span>
+        <h2 style="color:#fff;margin:16px 0 20px">We needed a better tool.<br>So we built one.</h2>
+        <p>When we started scaling our Lead Gen VA service, we tried every cold email tool on the market. They were either too expensive, too complex, or lacked the AI features our VAs needed to do the job well.</p>
+        <p>So we built AdoBoost from scratch — specifically designed for the way our VAs work. AI sequence generation, smart warmup, humanized sending, and reply tracking in one place. Our VAs used it internally, clients started asking about it, and we opened it up.</p>
+        <div class="origin-quote">
+          <p>"We didn't build AdoBoost to sell software. We built it because our clients needed better results from their outreach, and no existing tool was good enough for the way we work."</p>
+          <cite>— Adobo Solutions Founding Team</cite>
+        </div>
+      </div>
+      <div class="origin-right reveal delay-2">
+        <div class="adoboost-logo">Ado<span>Boost</span></div>
+        <h3>Built by VAs, for VAs</h3>
+        <div class="origin-feats">
+          <div class="origin-feat"><span class="chk">✓</span>AI writes full cold email sequences</div>
+          <div class="origin-feat"><span class="chk">✓</span>AI-powered inbox warmup</div>
+          <div class="origin-feat"><span class="chk">✓</span>Humanized sending schedules</div>
+          <div class="origin-feat"><span class="chk">✓</span>Two-panel reply inbox</div>
+          <div class="origin-feat"><span class="chk">✓</span>Full campaign analytics</div>
+          <div class="origin-feat"><span class="chk">✓</span>Unlimited accounts on Agency plan</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="adoboost.html" class="btn btn-purple" style="justify-content:center">Explore AdoBoost →</a>
+          <a href="contact.html" class="btn btn-glass" style="justify-content:center">Get it FREE with Lead Gen VA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PH PRIDE -->
+<div class="ph-section">
+  <div class="container">
+    <div class="ph-flags reveal">🇵🇭</div>
+    <h2 class="reveal">Proudly Filipino.</h2>
+    <p class="reveal">The Philippines produces some of the world's most talented, hardworking, and English-proficient professionals. We are proud to be a Filipino company connecting this extraordinary talent with businesses who need them — and building the AI tools that make them even better.</p>
+    <div style="margin-top:32px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap" class="reveal">
+      <a href="contact.html" class="btn btn-gold btn-lg">Hire a Filipino VA →</a>
+      <a href="services.html" class="btn btn-glass btn-lg">Browse Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="section" style="background:linear-gradient(155deg,#05091a 0%,#0a0f28 40%,#14082a 70%,#05091a 100%);text-align:center;position:relative;overflow:hidden">
+  <div class="grid-texture"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <span class="pill pill-blue" style="margin-bottom:20px;display:inline-flex">🤝 Work with us</span>
+    <h2 style="color:#fff;margin-bottom:16px">Ready to grow your team?</h2>
+    <p style="color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto 36px;font-size:17px">Join 500+ businesses worldwide who scale smarter with Adobo Solutions Filipino VAs and AI tools.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl">Hire a VA Today →</a>
+      <a href="mailto:hello@adobosolutions.com" class="btn btn-glass btn-xl">Send Us a Message</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="f-brand"><div class="f-brand-logo"><img src="assets/logo.jpg" alt="Adobo Solutions"></div><p>Elite Filipino VAs powered by AI. Proudly built in the Philippines.</p><div class="f-brand-badges"><span class="f-badge">🇵🇭 PH-Based</span><span class="f-badge">🤖 AI-Powered</span></div></div>
+      <div class="f-col"><h4>Services</h4><a href="services.html#customer-support">Customer Support</a><a href="services.html#medical-billing">Medical Billing</a><a href="services.html#ai-automation">AI Automation</a><a href="services.html#cold-email">Cold Email</a><a href="services.html#seo">SEO</a></div>
+      <div class="f-col"><h4>More Services</h4><a href="services.html#web-design">Web Design</a><a href="services.html#admin-ea">Admin / EA</a><a href="services.html#social-media">Social Media</a><a href="services.html#sales-lead-gen">Sales / Lead Gen</a></div>
+      <div class="f-col"><h4>AdoBoost</h4><a href="adoboost.html">Product Overview</a><a href="pricing.html#adoboost">Pricing</a><a href="https://app.adobosolutions.com/register">Start Free Trial</a></div>
+      <div class="f-col"><h4>Company</h4><a href="about.html">About Us</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="mailto:hello@adobosolutions.com">hello@adobosolutions.com</a></div>
+    </div>
+    <div class="footer-bot"><p>© 2026 Adobo Solutions. All rights reserved. Made with 🇵🇭 in the Philippines.</p><div class="footer-bot-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobile-menu');
+  hb.addEventListener('click',()=>{const o=mm.classList.toggle('open');hb.classList.toggle('open',o);});
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mm.classList.remove('open');hb.classList.remove('open');}));
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
