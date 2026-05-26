@@ -3,66 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing — Adobo Solutions VA Services & AdoBoost</title>
-  <meta name="description" content="Simple, transparent pricing for Filipino VA services and AdoBoost cold email platform. Start free or hire your first VA today.">
+  <title>Work With Us — Adobo Solutions VA Services & AdoBoost</title>
+  <meta name="description" content="Every client is different. Let's find the right VA solution for your business — book a free 20-minute discovery call with the Adobo Solutions team.">
   <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
   <link href="css/main.css" rel="stylesheet">
   <style>
-    /* ── VA PRICING ── */
-    .va-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .va-card {
+    /* ── TIER CARDS ── */
+    .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .tier-card {
       background: var(--glass); border: 1.5px solid var(--border);
       border-radius: 20px; padding: 34px 28px;
       transition: all 0.22s; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
-    .va-card:hover { background: var(--glass-2); border-color: var(--border-2); transform: translateY(-4px); box-shadow: var(--shadow-l); }
-    .va-card.pop { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,158,11,0.12); transform: translateY(-6px); }
-    .va-card.pop:hover { transform: translateY(-9px); }
-    .va-pop-tag { position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: var(--grad-g); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 16px; border-radius: 0 0 9px 9px; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
-    .va-plan-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 10px; margin-top: 14px; }
-    .va-price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 8px; }
-    .va-price { font-size: 48px; font-weight: 900; color: #fff; letter-spacing: -0.05em; }
-    .va-period { font-size: 15px; color: var(--text-3); }
-    .va-desc { font-size: 13.5px; color: var(--text-3); line-height: 1.6; margin-bottom: 22px; }
-    .va-btn { display: block; width: 100%; padding: 13px; text-align: center; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.18s; border: 1.5px solid var(--border-2); color: var(--text-2); background: transparent; font-family: inherit; text-decoration: none; margin-bottom: 24px; }
-    .va-btn:hover { border-color: var(--gold); color: var(--gold-l); }
-    .va-card.pop .va-btn { background: var(--grad-g); color: #fff; border-color: transparent; }
-    .va-card.pop .va-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-    .va-feats-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 14px; }
-    .va-feats { display: flex; flex-direction: column; gap: 9px; }
-    .va-feat { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--text-2); line-height: 1.45; }
-    .va-chk { width: 16px; height: 16px; border-radius: 50%; background: rgba(245,158,11,0.12); color: var(--gold-l); font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-    .va-included { display: flex; align-items: center; gap: 8px; margin-top: 18px; padding: 11px 14px; background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.2); border-radius: 9px; font-size: 12.5px; color: #4ade80; font-weight: 600; }
+    .tier-card:hover { background: var(--glass-2); border-color: var(--border-2); transform: translateY(-4px); box-shadow: var(--shadow-l); }
+    .tier-card.pop { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,158,11,0.12); transform: translateY(-6px); }
+    .tier-card.pop:hover { transform: translateY(-9px); }
+    .tier-pop-tag { position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: var(--grad-g); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 16px; border-radius: 0 0 9px 9px; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+    .tier-icon { font-size: 28px; margin-bottom: 12px; margin-top: 8px; }
+    .tier-name { font-size: 21px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .tier-tagline { font-size: 13.5px; color: var(--text-3); line-height: 1.65; margin-bottom: 20px; flex-grow: 1; }
+    .tier-cta { display: block; width: 100%; padding: 13px; text-align: center; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.18s; border: 1.5px solid var(--border-2); color: var(--text-2); background: transparent; font-family: inherit; text-decoration: none; margin-bottom: 24px; }
+    .tier-cta:hover { border-color: var(--gold); color: var(--gold-l); }
+    .tier-card.pop .tier-cta { background: var(--grad-g); color: #fff; border-color: transparent; }
+    .tier-card.pop .tier-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .tier-feats-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 14px; }
+    .tier-feats { display: flex; flex-direction: column; gap: 9px; }
+    .tier-feat { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--text-2); line-height: 1.45; }
+    .tier-chk { width: 16px; height: 16px; border-radius: 50%; background: rgba(245,158,11,0.12); color: var(--gold-l); font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .tier-included { display: flex; align-items: center; gap: 8px; margin-top: 18px; padding: 11px 14px; background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.2); border-radius: 9px; font-size: 12.5px; color: #4ade80; font-weight: 600; }
 
-    /* ── ADOBOOST PRICING (reused from adoboost page) ── */
-    .ab-pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
-    .ab-card { border: 1.5px solid var(--border); border-radius: 16px; padding: 26px 22px; transition: all 0.22s; background: var(--glass); position: relative; overflow: hidden; }
-    .ab-card:hover { box-shadow: var(--shadow-l); transform: translateY(-3px); }
-    .ab-card.pop { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.11); transform: translateY(-6px); }
-    .ab-card.pop:hover { transform: translateY(-9px); }
-    .ab-card.agency { border-color: var(--purple); }
-    .ab-pop-tag { position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: var(--grad); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 16px; border-radius: 0 0 9px 9px; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
-    .ab-plan-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 10px; margin-top: 14px; }
-    .ab-price-row { display: flex; align-items: baseline; gap: 3px; margin-bottom: 6px; }
-    .ab-price { font-size: 44px; font-weight: 900; color: #fff; letter-spacing: -0.05em; }
-    .ab-per { font-size: 14px; color: var(--text-3); }
-    .ab-desc { font-size: 13px; color: var(--text-3); margin-bottom: 20px; line-height: 1.55; }
-    .ab-btn { display: block; width: 100%; padding: 11px; text-align: center; border-radius: 9px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.18s; border: 1.5px solid var(--border-2); color: var(--text-2); background: transparent; font-family: inherit; text-decoration: none; margin-bottom: 22px; }
-    .ab-btn:hover { border-color: var(--blue); color: var(--blue-l); }
-    .ab-card.pop    .ab-btn { background: var(--blue); color: #fff; border-color: var(--blue); }
-    .ab-card.pop    .ab-btn:hover { background: var(--blue-h); }
-    .ab-card.agency .ab-btn { background: var(--purple); color: #fff; border-color: var(--purple); }
-    .ab-feats-lbl { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 12px; }
-    .ab-feats { display: flex; flex-direction: column; gap: 8px; }
-    .ab-feat { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-2); }
-    .ab-chk { width: 15px; height: 15px; border-radius: 50%; background: rgba(37,99,235,0.12); color: var(--blue-l); font-size: 8.5px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-    .ab-card.agency .ab-chk { background: rgba(124,58,237,0.12); color: #a78bfa; }
-    .ab-credits { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 18px; padding: 10px 12px; border-radius: 9px; background: rgba(124,58,237,0.07); border: 1px solid rgba(124,58,237,0.16); }
-    .ab-credits-lbl { font-size: 12px; color: #a78bfa; font-weight: 700; display: flex; align-items: center; gap: 5px; }
-    .ab-credits-val { font-size: 14px; font-weight: 800; color: #a78bfa; }
-
-    /* ── COMPARISON TABLE ── */
-    .compare-table { width: 100%; border-collapse: collapse; margin-top: 48px; }
+    /* ── WHAT'S INCLUDED TABLE ── */
+    .compare-table { width: 100%; border-collapse: collapse; }
     .compare-table th, .compare-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
     .compare-table thead th { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
     .compare-table thead th:first-child { color: var(--text-2); }
@@ -71,6 +43,28 @@
     .check { color: #4ade80; font-size: 16px; }
     .cross { color: rgba(255,255,255,0.2); font-size: 16px; }
     .compare-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); }
+
+    /* ── DISCOVERY CALL SECTION ── */
+    .call-card {
+      background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(124,58,237,0.08));
+      border: 1.5px solid rgba(37,99,235,0.22);
+      border-radius: 24px; padding: 56px 48px;
+      display: flex; align-items: center; gap: 56px; flex-wrap: wrap;
+    }
+    .call-left { flex: 1; min-width: 260px; }
+    .call-left h2 { font-size: clamp(26px, 4vw, 36px); color: #fff; margin-bottom: 14px; line-height: 1.25; }
+    .call-left p  { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 480px; margin-bottom: 28px; }
+    .call-steps { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .call-step  { display: flex; align-items: flex-start; gap: 14px; }
+    .call-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0; margin-top: 1px; }
+    .call-step-text strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+    .call-step-text span   { font-size: 13px; color: var(--text-3); }
+    .call-right { flex-shrink: 0; text-align: center; }
+    .call-badge { background: var(--glass-2); border: 1.5px solid var(--border-2); border-radius: 18px; padding: 32px 36px; min-width: 220px; }
+    .call-badge-ico { font-size: 42px; margin-bottom: 12px; }
+    .call-badge-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 8px; }
+    .call-badge-val { font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+    .call-badge-note { font-size: 12px; color: var(--text-3); }
 
     /* ── OFFER BANNER ── */
     .offer-banner {
@@ -82,10 +76,23 @@
     .offer-banner-text { flex: 1; min-width: 240px; }
     .offer-banner-text h3 { color: #4ade80; font-size: 22px; margin-bottom: 8px; }
     .offer-banner-text p  { color: rgba(255,255,255,0.55); font-size: 15px; line-height: 1.7; }
-    .offer-banner-price { text-align: center; flex-shrink: 0; }
-    .offer-banner-price .old { font-size: 16px; color: rgba(255,255,255,0.3); text-decoration: line-through; margin-bottom: 4px; }
-    .offer-banner-price .new { font-size: 48px; font-weight: 900; color: #4ade80; letter-spacing: -0.04em; line-height: 1; }
-    .offer-banner-price .val { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .offer-badge { text-align: center; flex-shrink: 0; background: rgba(34,197,94,0.08); border: 1.5px solid rgba(34,197,94,0.2); border-radius: 16px; padding: 24px 32px; }
+    .offer-badge-top { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.35); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .offer-badge-main { font-size: 44px; font-weight: 900; color: #4ade80; letter-spacing: -0.03em; line-height: 1; }
+    .offer-badge-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 5px; }
+
+    /* ── ADOBOOST TEASER ── */
+    .ab-teaser { background: var(--glass); border: 1.5px solid var(--border); border-radius: 20px; padding: 40px; display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+    .ab-teaser-left { flex: 1; min-width: 240px; }
+    .ab-teaser-left h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .ab-teaser-left p  { font-size: 14.5px; color: var(--text-3); line-height: 1.7; margin-bottom: 0; }
+    .ab-tier-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .ab-tier-pill { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; border: 1px solid; }
+    .ab-tier-pill.trial    { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); }
+    .ab-tier-pill.starter  { border-color: rgba(37,99,235,0.3); color: var(--blue-l); background: rgba(37,99,235,0.06); }
+    .ab-tier-pill.pro      { border-color: rgba(37,99,235,0.5); color: var(--blue-l); background: rgba(37,99,235,0.12); }
+    .ab-tier-pill.agency   { border-color: rgba(124,58,237,0.5); color: #a78bfa; background: rgba(124,58,237,0.10); }
+    .ab-teaser-right { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
 
     /* ── FAQ ── */
     .faq-item { background: var(--glass); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
@@ -97,8 +104,8 @@
     .faq-item.open .faq-body { max-height: 300px; }
     .faq-ans { padding: 0 24px 20px; font-size: 14.5px; color: var(--text-3); line-height: 1.72; }
 
-    @media (max-width: 1024px) { .ab-pricing-grid { grid-template-columns: 1fr 1fr; } .ab-card.pop { transform: none; } }
-    @media (max-width: 768px) { .va-pricing-grid { grid-template-columns: 1fr; } .ab-pricing-grid { grid-template-columns: 1fr; } .offer-banner { flex-direction: column; text-align: center; } }
+    @media (max-width: 900px) { .tier-grid { grid-template-columns: 1fr; } .call-card { padding: 36px 28px; gap: 32px; } .call-right { width: 100%; } .call-badge { min-width: unset; width: 100%; } }
+    @media (max-width: 640px) { .offer-banner { flex-direction: column; text-align: center; } .ab-teaser { flex-direction: column; } .ab-teaser-right { flex-direction: row; flex-wrap: wrap; } }
   </style>
 </head>
 <body>
@@ -110,7 +117,7 @@
     <div class="nav-links">
       <a href="services.html">Services</a>
       <a href="adoboost.html">AdoBoost</a>
-      <a href="pricing.html" class="active">Pricing</a>
+      <a href="pricing.html" class="active">Work With Us</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
@@ -124,7 +131,7 @@
 <div class="mobile-menu" id="mobile-menu">
   <a href="services.html">Services</a>
   <a href="adoboost.html">AdoBoost</a>
-  <a href="pricing.html">Pricing</a>
+  <a href="pricing.html">Work With Us</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
   <a href="https://app.adobosolutions.com/login">Sign in</a>
@@ -135,102 +142,149 @@
 <section class="page-hero">
   <div class="grid-texture"></div>
   <div class="container page-hero-inner">
-    <span class="pill pill-gold">Simple Pricing</span>
-    <h1 style="color:#fff;margin:16px 0 20px">Transparent pricing.<br>No surprises.</h1>
-    <p class="subhead">VA service plans and AdoBoost subscriptions — all designed to give you maximum value from day one.</p>
+    <span class="pill pill-gold">Let's Find Your Fit</span>
+    <h1 style="color:#fff;margin:16px 0 20px">Every business is different.<br>Let's build yours right.</h1>
+    <p class="subhead">No rate cards, no rigid tiers — just a real conversation about what you need, what we can build, and how we can grow together. Start with a free 20-minute intro call.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:32px">
+      <a href="contact.html" class="btn btn-gold btn-xl">Book a Discovery Call →</a>
+      <a href="#what-we-offer" class="btn btn-glass btn-xl">See What's Included</a>
+    </div>
   </div>
 </section>
 
-<!-- VA PRICING -->
-<section class="section" style="background:var(--navy-2)" id="va-pricing">
+<!-- DISCOVERY CALL SECTION -->
+<section class="section" style="background:var(--navy-2)">
+  <div class="container">
+    <div class="call-card reveal">
+      <div class="call-left">
+        <span class="pill pill-blue" style="margin-bottom:20px;display:inline-flex">📞 Free Discovery Call</span>
+        <h2>20 minutes that could change how you operate.</h2>
+        <p>Skip the guesswork. We start every engagement with a no-pressure intro call so we can match you with the right VA, the right tools, and the right plan — not a price sheet.</p>
+        <div class="call-steps">
+          <div class="call-step">
+            <div class="call-step-num">1</div>
+            <div class="call-step-text">
+              <strong>Tell us about your business</strong>
+              <span>Your industry, workload, bottlenecks, and goals. We listen first.</span>
+            </div>
+          </div>
+          <div class="call-step">
+            <div class="call-step-num">2</div>
+            <div class="call-step-text">
+              <strong>We recommend the right solution</strong>
+              <span>Part-time, full-time, a team — or a combination with AdoBoost included.</span>
+            </div>
+          </div>
+          <div class="call-step">
+            <div class="call-step-num">3</div>
+            <div class="call-step-text">
+              <strong>You get a custom proposal</strong>
+              <span>Tailored scope, clear deliverables, no surprises. Your move from there.</span>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn btn-gold">Book My Free Call →</a>
+      </div>
+      <div class="call-right">
+        <div class="call-badge">
+          <div class="call-badge-ico">🎯</div>
+          <div class="call-badge-label">Intro Call</div>
+          <div class="call-badge-val">FREE</div>
+          <div class="call-badge-note">No commitment required</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE OFFER -->
+<section class="section" style="background:var(--navy)" id="what-we-offer">
   <div class="container">
     <div class="section-head center">
       <span class="pill pill-gold">VA Services</span>
-      <h2 style="margin:14px 0 16px">Filipino VA Plans</h2>
-      <p class="subhead">Full-time and part-time options. All VAs come trained, vetted, and AI-equipped.</p>
+      <h2 style="margin:14px 0 16px">Choose your engagement model</h2>
+      <p class="subhead">Three flexible ways to work with our Filipino VA team. All plans include a vetted VA, AI tools training, and a dedicated account manager.</p>
     </div>
-    <div class="va-pricing-grid">
+    <div class="tier-grid">
 
-      <div class="va-card reveal">
-        <div class="va-plan-name">Part-Time</div>
-        <div class="va-price-row">
-          <span class="va-price">$499</span>
-          <span class="va-period">/mo</span>
-        </div>
-        <p class="va-desc">20 hours/week. Perfect for getting started or delegating specific tasks without committing to full-time.</p>
-        <a href="contact.html" class="va-btn">Get Started →</a>
-        <div class="va-feats-lbl">Includes</div>
-        <div class="va-feats">
-          <div class="va-feat"><span class="va-chk">✓</span>20 hrs/week dedicated VA</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Vetted &amp; trained professional</div>
-          <div class="va-feat"><span class="va-chk">✓</span>AI tools training included</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Weekly progress reports</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Dedicated account manager</div>
-          <div class="va-feat"><span class="va-chk">✓</span>48-hour onboarding</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Free VA replacement if needed</div>
+      <!-- Part-Time -->
+      <div class="tier-card reveal">
+        <div class="tier-icon">🕐</div>
+        <div class="tier-name">Part-Time VA</div>
+        <p class="tier-tagline">20 hours/week. Perfect for getting started, testing delegation, or off-loading a specific set of tasks without committing full-time.</p>
+        <a href="contact.html" class="tier-cta">Book a Call →</a>
+        <div class="tier-feats-lbl">What's included</div>
+        <div class="tier-feats">
+          <div class="tier-feat"><span class="tier-chk">✓</span>20 hrs/week dedicated VA</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Vetted &amp; trained professional</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>AI tools training included</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Weekly progress reports</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Dedicated account manager</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>48-hour onboarding</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Free VA replacement if needed</div>
         </div>
       </div>
 
-      <div class="va-card pop reveal delay-1">
-        <div class="va-pop-tag">Most Popular</div>
-        <div class="va-plan-name">Full-Time</div>
-        <div class="va-price-row">
-          <span class="va-price">$899</span>
-          <span class="va-period">/mo</span>
+      <!-- Full-Time -->
+      <div class="tier-card pop reveal delay-1">
+        <div class="tier-pop-tag">Most Popular</div>
+        <div class="tier-icon">💼</div>
+        <div class="tier-name">Full-Time VA</div>
+        <p class="tier-tagline">40 hours/week. Your dedicated full-time team member — fully managed, accountable, and results-driven from day one.</p>
+        <a href="contact.html" class="tier-cta">Book a Call →</a>
+        <div class="tier-feats-lbl">Everything in Part-Time, plus</div>
+        <div class="tier-feats">
+          <div class="tier-feat"><span class="tier-chk">✓</span>40 hrs/week dedicated VA</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Daily task reporting</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Priority VA matching</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Access to advanced AI tools</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Monthly performance reviews</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>SLA guarantee on response times</div>
         </div>
-        <p class="va-desc">40 hours/week. Your dedicated full-time team member — fully managed, accountable, and results-driven.</p>
-        <a href="contact.html" class="va-btn">Get Started →</a>
-        <div class="va-feats-lbl">Everything in Part-Time, plus</div>
-        <div class="va-feats">
-          <div class="va-feat"><span class="va-chk">✓</span>40 hrs/week dedicated VA</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Daily task reporting</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Priority VA matching</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Access to advanced AI tools</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Monthly performance reviews</div>
-          <div class="va-feat"><span class="va-chk">✓</span>SLA guarantee on response times</div>
-        </div>
-        <div class="va-included">🎁 Add Lead Gen VA → Get AdoBoost Agency FREE</div>
+        <div class="tier-included">🎁 Add Lead Gen VA → Get AdoBoost Agency FREE</div>
       </div>
 
-      <div class="va-card reveal delay-2">
-        <div class="va-plan-name">VA Team</div>
-        <div class="va-price-row">
-          <span class="va-price gold-text">Custom</span>
-        </div>
-        <p class="va-desc">Multiple VAs across different roles. For businesses that need a fully managed offshore team.</p>
-        <a href="contact.html" class="va-btn">Talk to Us →</a>
-        <div class="va-feats-lbl">Everything in Full-Time, plus</div>
-        <div class="va-feats">
-          <div class="va-feat"><span class="va-chk">✓</span>2–10+ VAs across multiple roles</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Dedicated team lead</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Custom SLA &amp; KPIs</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Weekly team performance call</div>
-          <div class="va-feat"><span class="va-chk">✓</span>Volume pricing discounts</div>
-          <div class="va-feat"><span class="va-chk">✓</span>White-label reporting available</div>
+      <!-- VA Team -->
+      <div class="tier-card reveal delay-2">
+        <div class="tier-icon">🏢</div>
+        <div class="tier-name">VA Team</div>
+        <p class="tier-tagline">Multiple VAs across different roles. For businesses ready to build a fully managed, scalable offshore team tailored to your operations.</p>
+        <a href="contact.html" class="tier-cta">Let's Talk →</a>
+        <div class="tier-feats-lbl">Everything in Full-Time, plus</div>
+        <div class="tier-feats">
+          <div class="tier-feat"><span class="tier-chk">✓</span>2–10+ VAs across multiple roles</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Dedicated team lead</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Custom SLA &amp; KPIs</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Weekly team performance call</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>Volume pricing available</div>
+          <div class="tier-feat"><span class="tier-chk">✓</span>White-label reporting available</div>
         </div>
       </div>
 
     </div>
 
-    <!-- Comparison table -->
+    <!-- Comparison table (features only, no prices) -->
     <div class="compare-wrap reveal" style="margin-top:48px">
       <table class="compare-table">
         <thead>
           <tr>
-            <th>Feature</th>
+            <th>What's included</th>
             <th>Part-Time</th>
             <th>Full-Time</th>
             <th>VA Team</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Hours per week</td><td>20 hrs</td><td>40 hrs</td><td>Custom</td></tr>
+          <tr><td>Dedicated VA hours</td><td>20 hrs/wk</td><td>40 hrs/wk</td><td>Custom</td></tr>
           <tr><td>Dedicated account manager</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
           <tr><td>AI tools training</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>48-hour onboarding</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Free VA replacement</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
           <tr><td>Daily reporting</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
           <tr><td>Priority VA matching</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
           <tr><td>Multiple VA roles</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>AdoBoost Agency free</td><td>Add Lead Gen VA</td><td>Add Lead Gen VA</td><td><span class="check">✓</span></td></tr>
+          <tr><td>Dedicated team lead</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>AdoBoost Agency (with Lead Gen VA)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -238,109 +292,89 @@
     <!-- Lead Gen Offer Banner -->
     <div class="offer-banner reveal">
       <div class="offer-banner-text">
-        <span class="pill pill-green" style="margin-bottom:12px;display:inline-flex">🎁 Best Value</span>
-        <h3>Lead Gen VA + AdoBoost Agency FREE</h3>
-        <p>Hire our Lead Generation VA and we include AdoBoost Agency ($299/mo) at no extra cost. Your VA runs the campaigns. You get the results. The software is on us.</p>
+        <span class="pill pill-green" style="margin-bottom:12px;display:inline-flex">🎁 Best Value Bundle</span>
+        <h3>Lead Gen VA + AdoBoost Agency — included.</h3>
+        <p>Hire our Lead Generation VA and we include AdoBoost Agency at no extra cost. Your VA runs the campaigns. You get the replies. The AI platform is on us — for as long as you're a client.</p>
         <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-          <a href="contact.html" class="btn btn-gold">Claim This Offer →</a>
+          <a href="contact.html" class="btn btn-gold">Claim This Bundle →</a>
           <a href="adoboost.html" class="btn btn-glass">Learn About AdoBoost</a>
         </div>
       </div>
-      <div class="offer-banner-price">
-        <div class="old">$299/mo AdoBoost Agency</div>
-        <div class="new">FREE</div>
-        <div class="val">with Lead Gen VA program</div>
+      <div class="offer-badge">
+        <div class="offer-badge-top">AdoBoost Agency</div>
+        <div class="offer-badge-main">FREE</div>
+        <div class="offer-badge-sub">with Lead Gen VA program</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ADOBOOST PRICING -->
-<section class="section" style="background:var(--navy)" id="adoboost">
+<!-- ADOBOOST TEASER -->
+<section class="section" style="background:var(--navy-2)">
   <div class="container">
-    <div class="section-head center">
+    <div class="section-head center" style="margin-bottom:40px">
       <span class="pill pill-blue">AdoBoost</span>
-      <h2 style="margin:14px 0 16px">Self-serve AdoBoost plans</h2>
-      <p class="subhead">Prefer to run AdoBoost yourself? Pick a plan and start sending. All plans include AI features and inbox warmup.</p>
+      <h2 style="margin:14px 0 16px">Also available: AdoBoost self-serve plans</h2>
+      <p class="subhead">Prefer to run cold email yourself? AdoBoost has plans from free to agency-scale — no VA required.</p>
     </div>
-    <div class="ab-pricing-grid">
-      <div class="ab-card reveal">
-        <div class="ab-plan-name">Trial</div>
-        <div class="ab-price-row"><span class="ab-price">$0</span><span class="ab-per">/mo</span></div>
-        <p class="ab-desc">Try AdoBoost on a small list. No credit card needed.</p>
-        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">10</span></div>
-        <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started free</a>
-        <div class="ab-feats-lbl">Includes</div>
-        <div class="ab-feats">
-          <div class="ab-feat"><span class="ab-chk">✓</span>2 campaigns</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>200 contacts</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>1 email account</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>50 emails / day</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>AI inbox warmup</div>
+    <div class="ab-teaser reveal">
+      <div class="ab-teaser-left">
+        <h3>Four plans. One platform. All AI-powered.</h3>
+        <p>From solo founders testing outreach to agencies managing hundreds of clients — AdoBoost scales with your volume. Includes AI inbox warmup, smart sequencing, IMAP sync, and campaign analytics on every plan.</p>
+        <div class="ab-tier-pills">
+          <span class="ab-tier-pill trial">Trial — Free</span>
+          <span class="ab-tier-pill starter">Starter</span>
+          <span class="ab-tier-pill pro">Professional</span>
+          <span class="ab-tier-pill agency">Agency</span>
         </div>
       </div>
-      <div class="ab-card reveal delay-1">
-        <div class="ab-plan-name">Starter</div>
-        <div class="ab-price-row"><span class="ab-price">$29</span><span class="ab-per">/mo</span></div>
-        <p class="ab-desc">For solo founders running consistent outreach.</p>
-        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">100</span></div>
-        <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started</a>
-        <div class="ab-feats-lbl">Includes</div>
-        <div class="ab-feats">
-          <div class="ab-feat"><span class="ab-chk">✓</span>10 campaigns</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>3,000 contacts</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>3 email accounts</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>500 emails / day</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>IMAP inbox sync</div>
-        </div>
-      </div>
-      <div class="ab-card pop reveal delay-2">
-        <div class="ab-pop-tag">Most Popular</div>
-        <div class="ab-plan-name">Professional</div>
-        <div class="ab-price-row"><span class="ab-price">$79</span><span class="ab-per">/mo</span></div>
-        <p class="ab-desc">For growing teams with high volume and API needs.</p>
-        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">1,000</span></div>
-        <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started</a>
-        <div class="ab-feats-lbl">Everything in Starter, plus</div>
-        <div class="ab-feats">
-          <div class="ab-feat"><span class="ab-chk">✓</span>50 campaigns</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>15,000 contacts</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>6 email accounts</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>2,000 emails / day</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>Inbox rotation + API</div>
-        </div>
-      </div>
-      <div class="ab-card agency reveal delay-3">
-        <div class="ab-plan-name">Agency</div>
-        <div class="ab-price-row"><span class="ab-price" style="color:#a78bfa">$299</span><span class="ab-per">/mo</span></div>
-        <p class="ab-desc">Or get it FREE with our Lead Gen VA program.</p>
-        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">Unlimited</span></div>
-        <a href="contact.html" class="ab-btn" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#4ade80">Get it FREE →</a>
-        <div class="ab-feats-lbl">Everything in Pro, plus</div>
-        <div class="ab-feats">
-          <div class="ab-feat"><span class="ab-chk">✓</span>Unlimited campaigns</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>250,000 contacts</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>Unlimited email accounts</div>
-          <div class="ab-feat"><span class="ab-chk">✓</span>White-label + sub-accounts</div>
-        </div>
+      <div class="ab-teaser-right">
+        <a href="adoboost.html#pricing" class="btn btn-primary">See AdoBoost Plans →</a>
+        <a href="https://app.adobosolutions.com/register" class="btn btn-glass">Try for Free</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="section" style="background:var(--navy-2)">
+<section class="section" style="background:var(--navy)">
   <div class="container">
     <div class="section-head center">
       <span class="pill pill-blue">FAQ</span>
-      <h2 style="margin:14px 0 0">Pricing questions.</h2>
+      <h2 style="margin:14px 0 0">Common questions.</h2>
     </div>
     <div style="max-width:800px;margin:48px auto 0;display:flex;flex-direction:column;gap:10px">
-      <div class="faq-item"><button class="faq-q">Are there any setup fees or contracts?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-ans">No setup fees, no long-term contracts. VA services are month-to-month — you can pause or cancel anytime with 30 days' notice. AdoBoost plans are also monthly with no annual commitment required.</div></div></div>
-      <div class="faq-item"><button class="faq-q">What's included in VA onboarding?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-ans">We handle everything: matching you with the right VA, introductory call, tool access setup, process documentation, and a structured first-week plan. You get a dedicated account manager who oversees onboarding and stays as your main point of contact.</div></div></div>
-      <div class="faq-item"><button class="faq-q">What if my VA isn't the right fit?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-ans">We offer a free VA replacement if things aren't working out. Just let your account manager know. We'll re-match you within 48 hours at no extra cost. Your satisfaction is guaranteed.</div></div></div>
-      <div class="faq-item"><button class="faq-q">How does the free AdoBoost Agency plan work?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-ans">When you hire one of our Lead Generation VAs, we include AdoBoost Agency ($299/mo) completely free for as long as you remain an active client. Your VA uses it to run your outreach campaigns. You get full access to the platform, the AI features, unlimited campaigns, and unlimited contacts — all on us.</div></div></div>
-      <div class="faq-item"><button class="faq-q">What timezones do your VAs work in?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-ans">Our VAs are based in the Philippines (PHT, UTC+8) but are flexible and can work adjusted hours to overlap with US (EST/PST), UK, Australian, or other timezones. Just let us know your preferred working hours and we'll match you accordingly.</div></div></div>
+
+      <div class="faq-item">
+        <button class="faq-q">How does the discovery call work?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><div class="faq-ans">It's a free, no-commitment 20-minute call with our team. We'll ask about your business, current bottlenecks, and what kind of help you're looking for. From there we'll recommend an engagement model and follow up with a custom proposal — no pressure, no pitch.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Are there contracts or setup fees?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><div class="faq-ans">No setup fees, no long-term contracts. VA services are month-to-month — you can pause or cancel anytime with 30 days' notice. We believe the work should speak for itself, not a locked-in agreement.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What's included in VA onboarding?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><div class="faq-ans">We handle everything: matching you with the right VA, an intro call, tool access setup, process documentation, and a structured first-week plan. You get a dedicated account manager who oversees onboarding and stays as your main point of contact throughout the engagement.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What if my VA isn't the right fit?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><div class="faq-ans">We offer a free VA replacement if things aren't working out — no questions asked. Just let your account manager know and we'll re-match you within 48 hours at no extra cost. Your satisfaction is fully guaranteed.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How does the free AdoBoost Agency bundle work?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><div class="faq-ans">When you hire our Lead Generation VA, we include AdoBoost Agency — our top-tier cold email platform — completely free for as long as you remain an active client. Your VA uses it to run your campaigns. You get full platform access, unlimited campaigns, unlimited contacts, AI features, and white-label options. All included, no hidden cost.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What timezones do your VAs work in?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><div class="faq-ans">Our VAs are based in the Philippines (PHT, UTC+8) but are flexible and can adjust their hours to overlap with US (EST/PST), UK, Australian, or other timezones. Just let us know your preferred working hours during the discovery call and we'll match you accordingly.</div></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -350,10 +384,10 @@
   <div class="grid-texture"></div>
   <div class="container" style="position:relative;z-index:1">
     <span class="pill pill-gold" style="margin-bottom:20px;display:inline-flex">🚀 Ready to start?</span>
-    <h2 style="color:#fff;margin-bottom:16px">Pick your plan and go.</h2>
-    <p style="color:rgba(255,255,255,0.5);max-width:460px;margin:0 auto 36px;font-size:17px">Your first VA can be onboarded in 48 hours. Your first AdoBoost campaign can run today.</p>
+    <h2 style="color:#fff;margin-bottom:16px">Let's find the right fit for your team.</h2>
+    <p style="color:rgba(255,255,255,0.5);max-width:500px;margin:0 auto 36px;font-size:17px">Book a free 20-minute intro call and we'll walk you through exactly what's possible for your business.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
-      <a href="contact.html" class="btn btn-gold btn-xl">Hire a VA →</a>
+      <a href="contact.html" class="btn btn-gold btn-xl">Book a Discovery Call →</a>
       <a href="https://app.adobosolutions.com/register" class="btn btn-glass btn-xl">Try AdoBoost free</a>
     </div>
   </div>
@@ -363,9 +397,9 @@
 <footer id="footer">
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="f-brand"><div class="f-brand-logo"><img src="assets/logo.jpg" alt="Adobo Solutions"></div><p>Elite Filipino VAs powered by AI. Transparent pricing, zero surprises.</p><div class="f-brand-badges"><span class="f-badge">🇵🇭 PH-Based</span><span class="f-badge">🤖 AI-Powered</span></div></div>
+      <div class="f-brand"><div class="f-brand-logo"><img src="assets/logo.jpg" alt="Adobo Solutions"></div><p>Elite Filipino VAs powered by AI. Built for businesses that value quality over guesswork.</p><div class="f-brand-badges"><span class="f-badge">🇵🇭 PH-Based</span><span class="f-badge">🤖 AI-Powered</span></div></div>
       <div class="f-col"><h4>Services</h4><a href="services.html#customer-support">Customer Support</a><a href="services.html#medical-billing">Medical Billing</a><a href="services.html#ai-automation">AI Automation</a><a href="services.html#cold-email">Cold Email</a><a href="services.html#seo">SEO</a></div>
-      <div class="f-col"><h4>AdoBoost</h4><a href="adoboost.html">Product Overview</a><a href="#adoboost">AB Pricing</a><a href="https://app.adobosolutions.com/register">Start Free Trial</a><a href="https://app.adobosolutions.com/login">Sign In</a></div>
+      <div class="f-col"><h4>AdoBoost</h4><a href="adoboost.html">Product Overview</a><a href="adoboost.html#pricing">AB Plans</a><a href="https://app.adobosolutions.com/register">Start Free Trial</a><a href="https://app.adobosolutions.com/login">Sign In</a></div>
       <div class="f-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="contact.html#apply">Hire a VA</a><a href="mailto:hello@adobosolutions.com">hello@adobosolutions.com</a></div>
       <div class="f-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Anti-Spam Policy</a></div>
     </div>
