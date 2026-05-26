@@ -18,61 +18,28 @@
       min-height: 100vh; display: flex; align-items: center;
       padding-top: 68px; position: relative; overflow: hidden;
     }
-    #hero::before {
-      content: ''; position: absolute; top: -120px; right: -80px;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(37,99,235,0.22) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    #hero::after {
-      content: ''; position: absolute; bottom: -120px; left: -80px;
-      width: 550px; height: 550px;
-      background: radial-gradient(circle, rgba(124,58,237,0.16) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero-inner {
-      max-width: 1200px; margin: 0 auto; padding: 80px 24px 100px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
-      align-items: center; position: relative; z-index: 1;
-    }
-    .hero-text .pill { margin-bottom: 22px; }
-    .hero-text h1 { color: #fff; margin-bottom: 22px; }
-    .hero-text .subhead { color: rgba(255,255,255,0.56); margin-bottom: 32px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
-    .hero-trust { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.32); }
-    .hero-trust-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.2); }
-
-    /* Hero visual — full-bleed fading photo */
-    .hero-visual { position: relative; margin-right: -24px; }
-    .hero-img-wrap { position: relative; overflow: hidden; /* no border-radius, no box-shadow */ }
-    .hero-img { width: 100%; height: 560px; object-fit: cover; object-position: center; display: block; }
-    .hero-img-overlay {
+    /* Hero — full-viewport background photo */
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .hero-bg-overlay {
       position: absolute; inset: 0;
       background:
-        /* left fade — blends into the dark hero background */
-        linear-gradient(to right, #020817 0%, rgba(2,8,23,0.92) 10%, rgba(2,8,23,0.45) 35%, transparent 65%),
-        /* top fade */
-        linear-gradient(to bottom, #020817 0%, rgba(2,8,23,0.55) 10%, transparent 28%),
-        /* bottom fade */
-        linear-gradient(to top, #020817 0%, rgba(2,8,23,0.6) 10%, transparent 32%),
-        /* subtle right edge fade */
-        linear-gradient(to left, rgba(2,8,23,0.3) 0%, transparent 20%);
+        linear-gradient(to bottom, rgba(2,8,23,0.55) 0%, rgba(2,8,23,0.10) 30%, rgba(2,8,23,0.10) 65%, rgba(2,8,23,0.75) 100%),
+        linear-gradient(105deg, rgba(2,8,23,0.88) 0%, rgba(5,15,40,0.72) 45%, rgba(10,20,55,0.50) 100%);
     }
-    /* floating stat badges */
-    .stat-badge {
-      position: absolute; background: rgba(10,15,30,0.78);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px; padding: 12px 18px;
-      backdrop-filter: blur(14px);
-      display: flex; align-items: center; gap: 12px;
-      animation: floatB 5s ease-in-out infinite;
+
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 120px 24px 120px;
+      position: relative; z-index: 1;
+      display: flex; align-items: flex-end;
     }
-    .stat-badge-tl { top: 28px; right: 28px; animation-duration: 6s; }
-    .stat-badge-br { bottom: 28px; right: 28px; animation-duration: 5s; animation-delay: 1.2s; }
-    .sb-icon { font-size: 20px; }
-    .sb-val { font-size: 22px; font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
-    .sb-lbl { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
-    @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .hero-text { max-width: 680px; }
+    .hero-text .pill { margin-bottom: 22px; }
+    .hero-text h1 { color: #fff; margin-bottom: 22px; }
+    .hero-text .subhead { color: rgba(255,255,255,0.72); margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.42); }
+    .hero-trust-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25); }
 
     /* ── TRUST BAR ── */
     #trust-bar { background: var(--navy-3); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 22px 0; }
@@ -215,9 +182,8 @@
       .why-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 0; padding: 60px 24px 80px; }
-      .hero-visual { order: -1; margin-right: -24px; margin-left: -24px; }
-      .hero-img { height: 320px; }
+      .hero-inner { padding: 90px 24px 80px; align-items: flex-end; }
+      .hero-text { max-width: 100%; }
       .promo-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr; gap: 32px; }
       .steps-grid::before { display: none; }
@@ -269,6 +235,11 @@
 
 <!-- HERO -->
 <section id="hero">
+  <!-- Full-screen background photo -->
+  <div class="hero-bg">
+    <img src="assets/shutterstock_2249980827.jpg" alt="" class="hero-bg-img">
+    <div class="hero-bg-overlay"></div>
+  </div>
   <div class="grid-texture"></div>
   <div class="hero-inner">
     <div class="hero-text">
@@ -287,32 +258,6 @@
         <span>AI-Trained VAs</span>
         <span class="hero-trust-dot"></span>
         <span>48-Hr Onboarding</span>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="hero-img-wrap">
-        <img
-          src="assets/shutterstock_2249980827.jpg"
-          alt="Filipino VA working"
-          class="hero-img">
-        <div class="hero-img-overlay"></div>
-        <!-- top-left badge -->
-        <div class="stat-badge stat-badge-tl">
-          <div class="sb-icon">⚡</div>
-          <div>
-            <div class="sb-val" style="color:#4ade80">48h</div>
-            <div class="sb-lbl">Onboarding time</div>
-          </div>
-        </div>
-        <!-- bottom-right badge -->
-        <div class="stat-badge stat-badge-br">
-          <div class="sb-icon">🌏</div>
-          <div>
-            <div class="sb-val" style="color:var(--gold-l)">10+</div>
-            <div class="sb-lbl">Industries served</div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
