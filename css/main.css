@@ -186,9 +186,6 @@ nav#nav.scrolled {
 }
 .nav-logo img {
   height: 38px; width: auto;
-  background: #fff;
-  border-radius: 7px;
-  padding: 3px 8px;
 }
 .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; }
 .nav-links a {
@@ -273,7 +270,7 @@ footer#footer { background: #030a18; padding: 72px 24px 36px; }
   border-bottom: 1px solid var(--border);
 }
 .f-brand-logo { margin-bottom: 16px; }
-.f-brand-logo img { height: 42px; background: #fff; border-radius: 8px; padding: 4px 10px; }
+.f-brand-logo img { height: 42px; }
 .f-brand p { font-size: 13.5px; color: var(--text-3); line-height: 1.7; max-width: 220px; margin-top: 12px; }
 .f-brand-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
 .f-badge {
