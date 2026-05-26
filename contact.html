@@ -369,11 +369,13 @@
   const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('hire-form');
+    const btn  = form.querySelector('.submit-btn');
     const success = document.getElementById('success-msg');
-    /* Basic validation */
+
+    /* ── Validation ── */
     const required = form.querySelectorAll('[required]');
     let valid = true;
     required.forEach(field => {
@@ -384,12 +386,61 @@
         field.style.borderColor = '';
       }
     });
-    if (!valid) return;
-    /* In production, POST to your backend or Formspree/Netlify Forms */
-    /* For now, show success state */
-    form.style.display = 'none';
-    success.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!valid) {
+      form.querySelector('[required]:invalid, [required][style*="red"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    /* ── Loading state ── */
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    /* ── Build FormData ── */
+    const data = new FormData(form);
+
+    /* Flatten checkbox group into a single readable string */
+    const checked = [...form.querySelectorAll('input[name="services"]:checked')].map(c => c.value);
+    data.delete('services');
+    data.append('Services Interested', checked.length ? checked.join(', ') : 'None selected');
+
+    /* Label the lead gen toggle clearly */
+    const leadGen = form.querySelector('input[name="lead_gen_offer"]');
+    data.delete('lead_gen_offer');
+    data.append('Wants Free AdoBoost Agency', leadGen?.checked ? 'YES ✅' : 'No');
+
+    /* ── POST to Formspree ── */
+    try {
+      const res = await fetch('https://formspree.io/f/xbdbpodj', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const json = await res.json().catch(() => ({}));
+        const msg  = json?.errors?.map(err => err.message).join(', ') || 'Submission failed.';
+        showFormError(btn, msg);
+      }
+    } catch (err) {
+      showFormError(btn, 'Connection error — please try again or email hello@adobosolutions.com');
+    }
+  }
+
+  function showFormError(btn, msg) {
+    btn.textContent = 'Submit My Application →';
+    btn.disabled = false;
+    let errEl = document.getElementById('form-error-msg');
+    if (!errEl) {
+      errEl = document.createElement('p');
+      errEl.id = 'form-error-msg';
+      errEl.style.cssText = 'color:#fca5a5;font-size:13.5px;margin-top:12px;text-align:center;';
+      btn.insertAdjacentElement('afterend', errEl);
+    }
+    errEl.textContent = '⚠️ ' + msg;
   }
 </script>
 </body>
