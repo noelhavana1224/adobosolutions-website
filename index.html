@@ -10,6 +10,7 @@
   <meta property="og:url" content="https://adobosolutions.com">
   <link rel="canonical" href="https://adobosolutions.com">
   <link rel="icon" href="assets/ADB%20LOGO-06.jpg" type="image/jpeg">
+  <link rel="preload" as="image" href="assets/shutterstock_2249980827.jpg">
   <link href="css/main.css" rel="stylesheet">
   <style>
     /* ── HERO ── */
@@ -46,11 +47,11 @@
     /* Floating stat badges */
     .stat-badge {
       position: absolute; z-index: 2;
-      background: rgba(5,12,28,0.80);
+      background: rgba(5,12,28,0.88);
       border: 1px solid rgba(255,255,255,0.14);
       border-radius: 14px; padding: 12px 18px;
-      backdrop-filter: blur(16px);
       display: flex; align-items: center; gap: 12px;
+      will-change: transform;
       animation: floatB 5s ease-in-out infinite;
     }
     .stat-badge-1 { bottom: 160px; right: 48px; animation-duration: 6s; }

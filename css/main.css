@@ -2,7 +2,7 @@
    ADOBO SOLUTIONS — SHARED STYLESHEET
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
 
 :root {
   --navy:      #020817;
@@ -117,8 +117,7 @@ h4 { font-size: 15px; font-weight: 700; line-height: 1.4; }
 .btn-purple:hover { background: #6d28d9; transform: translateY(-1px); }
 
 .btn-glass {
-  background: var(--glass-2); color: var(--text); border: 1.5px solid var(--border-2);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.08); color: var(--text); border: 1.5px solid var(--border-2);
 }
 .btn-glass:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
 
@@ -139,11 +138,9 @@ h4 { font-size: 15px; font-weight: 700; line-height: 1.4; }
 
 /* ── GLASS CARD ── */
 .glass-card {
-  background: var(--glass);
+  background: rgba(255,255,255,0.05);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: background 0.22s, border-color 0.22s, transform 0.22s, box-shadow 0.22s;
 }
 .glass-card:hover {
