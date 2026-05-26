@@ -17,20 +17,18 @@
     .story-stat .num { font-size: 38px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 4px; }
     .story-stat .lbl { font-size: 13px; color: var(--text-3); }
     .story-right { position: relative; }
-    .story-img-box {
-      background: var(--glass); border: 1px solid var(--border);
-      border-radius: 24px; padding: 36px; text-align: center;
-      position: relative; overflow: hidden;
+    /* Company card — white card so logo looks at home */
+    .company-card {
+      background: #fff; border-radius: 20px; padding: 36px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
     }
-    .story-img-box::before {
-      content: ''; position: absolute; top: -60px; right: -60px;
-      width: 260px; height: 260px;
-      background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%);
-    }
-    .story-logo { height: 80px; margin: 0 auto 28px; background: #fff; border-radius: 12px; padding: 8px 20px; }
-    .story-tagline { font-size: 18px; font-weight: 800; color: #fff; line-height: 1.4; margin-bottom: 16px; }
-    .story-ph { font-size: 48px; margin-bottom: 12px; }
-    .story-sub { font-size: 14px; color: var(--text-3); line-height: 1.7; }
+    .cc-logo-wrap { text-align: center; margin-bottom: 22px; }
+    .cc-logo { height: 72px; display: inline-block; }
+    .cc-divider { height: 1px; background: #e2e8f0; margin: 22px 0; }
+    .cc-tagline { font-size: 15px; font-weight: 700; color: #0f172a; text-align: center; margin-bottom: 20px; }
+    .cc-points { display: flex; flex-direction: column; gap: 11px; margin-bottom: 26px; }
+    .cc-point { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #334155; }
+    .cc-chk { width: 19px; height: 19px; border-radius: 50%; background: rgba(245,158,11,0.18); color: #d97706; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
     /* ── MISSION / VALUES ── */
     .mv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -174,10 +172,21 @@
         </div>
       </div>
       <div class="story-right reveal delay-2">
-        <div class="story-img-box">
-          <img src="assets/logo.jpg" alt="Adobo Solutions" class="story-logo">
-          <div class="story-tagline">"Filipino Talent.<br>Powered by AI."</div>
-          <p class="story-sub">Headquartered in the Philippines. Serving clients across the US, UK, Canada, Australia, and beyond.</p>
+        <div class="company-card">
+          <div class="cc-logo-wrap">
+            <img src="assets/logo.jpg" alt="Adobo Solutions" class="cc-logo">
+          </div>
+          <div class="cc-tagline">Filipino VAs. Powered by AI.</div>
+          <div class="cc-divider"></div>
+          <div class="cc-points">
+            <div class="cc-point"><span class="cc-chk">✓</span>Philippines-based, globally trusted</div>
+            <div class="cc-point"><span class="cc-chk">✓</span>AI tools built in-house</div>
+            <div class="cc-point"><span class="cc-chk">✓</span>Free VA replacement guarantee</div>
+            <div class="cc-point"><span class="cc-chk">✓</span>No long-term contracts</div>
+            <div class="cc-point"><span class="cc-chk">✓</span>VA matched within 48 hours</div>
+            <div class="cc-point"><span class="cc-chk">✓</span>Serving US, UK, AU &amp; CA clients</div>
+          </div>
+          <a href="contact.html" class="btn btn-gold" style="width:100%;justify-content:center;display:flex">Hire a VA →</a>
         </div>
       </div>
     </div>
