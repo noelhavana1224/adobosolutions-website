@@ -81,18 +81,32 @@
     .offer-badge-main { font-size: 44px; font-weight: 900; color: #4ade80; letter-spacing: -0.03em; line-height: 1; }
     .offer-badge-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 5px; }
 
-    /* ── ADOBOOST TEASER ── */
-    .ab-teaser { background: var(--glass); border: 1.5px solid var(--border); border-radius: 20px; padding: 40px; display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
-    .ab-teaser-left { flex: 1; min-width: 240px; }
-    .ab-teaser-left h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 10px; }
-    .ab-teaser-left p  { font-size: 14.5px; color: var(--text-3); line-height: 1.7; margin-bottom: 0; }
-    .ab-tier-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .ab-tier-pill { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; border: 1px solid; }
-    .ab-tier-pill.trial    { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); }
-    .ab-tier-pill.starter  { border-color: rgba(37,99,235,0.3); color: var(--blue-l); background: rgba(37,99,235,0.06); }
-    .ab-tier-pill.pro      { border-color: rgba(37,99,235,0.5); color: var(--blue-l); background: rgba(37,99,235,0.12); }
-    .ab-tier-pill.agency   { border-color: rgba(124,58,237,0.5); color: #a78bfa; background: rgba(124,58,237,0.10); }
-    .ab-teaser-right { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+    /* ── ADOBOOST PRICING ── */
+    .ab-pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
+    .ab-card { border: 1.5px solid var(--border); border-radius: 16px; padding: 26px 22px; transition: all 0.22s; background: var(--glass); position: relative; overflow: hidden; }
+    .ab-card:hover { box-shadow: var(--shadow-l); transform: translateY(-3px); }
+    .ab-card.pop { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.11); transform: translateY(-6px); }
+    .ab-card.pop:hover { transform: translateY(-9px); }
+    .ab-card.agency { border-color: var(--purple); }
+    .ab-pop-tag { position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: var(--grad); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 16px; border-radius: 0 0 9px 9px; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+    .ab-plan-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 10px; margin-top: 14px; }
+    .ab-price-row { display: flex; align-items: baseline; gap: 3px; margin-bottom: 6px; }
+    .ab-price { font-size: 44px; font-weight: 900; color: #fff; letter-spacing: -0.05em; }
+    .ab-per { font-size: 14px; color: var(--text-3); }
+    .ab-desc { font-size: 13px; color: var(--text-3); margin-bottom: 20px; line-height: 1.55; }
+    .ab-btn { display: block; width: 100%; padding: 11px; text-align: center; border-radius: 9px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.18s; border: 1.5px solid var(--border-2); color: var(--text-2); background: transparent; font-family: inherit; text-decoration: none; margin-bottom: 22px; }
+    .ab-btn:hover { border-color: var(--blue); color: var(--blue-l); }
+    .ab-card.pop    .ab-btn { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .ab-card.pop    .ab-btn:hover { background: var(--blue-h); }
+    .ab-card.agency .ab-btn { background: var(--purple); color: #fff; border-color: var(--purple); }
+    .ab-feats-lbl { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 12px; }
+    .ab-feats { display: flex; flex-direction: column; gap: 8px; }
+    .ab-feat { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-2); }
+    .ab-chk { width: 15px; height: 15px; border-radius: 50%; background: rgba(37,99,235,0.12); color: var(--blue-l); font-size: 8.5px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .ab-card.agency .ab-chk { background: rgba(124,58,237,0.12); color: #a78bfa; }
+    .ab-credits { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 18px; padding: 10px 12px; border-radius: 9px; background: rgba(124,58,237,0.07); border: 1px solid rgba(124,58,237,0.16); }
+    .ab-credits-lbl { font-size: 12px; color: #a78bfa; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+    .ab-credits-val { font-size: 14px; font-weight: 800; color: #a78bfa; }
 
     /* ── FAQ ── */
     .faq-item { background: var(--glass); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
@@ -104,8 +118,10 @@
     .faq-item.open .faq-body { max-height: 300px; }
     .faq-ans { padding: 0 24px 20px; font-size: 14.5px; color: var(--text-3); line-height: 1.72; }
 
+    @media (max-width: 1024px) { .ab-pricing-grid { grid-template-columns: 1fr 1fr; } .ab-card.pop { transform: none; } }
     @media (max-width: 900px) { .tier-grid { grid-template-columns: 1fr; } .call-card { padding: 36px 28px; gap: 32px; } .call-right { width: 100%; } .call-badge { min-width: unset; width: 100%; } }
-    @media (max-width: 640px) { .offer-banner { flex-direction: column; text-align: center; } .ab-teaser { flex-direction: column; } .ab-teaser-right { flex-direction: row; flex-wrap: wrap; } }
+    @media (max-width: 768px) { .ab-pricing-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .offer-banner { flex-direction: column; text-align: center; } }
   </style>
 </head>
 <body>
@@ -309,28 +325,74 @@
   </div>
 </section>
 
-<!-- ADOBOOST TEASER -->
-<section class="section" style="background:var(--navy-2)">
+<!-- ADOBOOST PRICING -->
+<section class="section" style="background:var(--navy-2)" id="adoboost">
   <div class="container">
-    <div class="section-head center" style="margin-bottom:40px">
+    <div class="section-head center">
       <span class="pill pill-blue">AdoBoost</span>
-      <h2 style="margin:14px 0 16px">Also available: AdoBoost self-serve plans</h2>
-      <p class="subhead">Prefer to run cold email yourself? AdoBoost has plans from free to agency-scale — no VA required.</p>
+      <h2 style="margin:14px 0 16px">Self-serve AdoBoost plans</h2>
+      <p class="subhead">Prefer to run AdoBoost yourself? Pick a plan and start sending. All plans include AI features and inbox warmup.</p>
     </div>
-    <div class="ab-teaser reveal">
-      <div class="ab-teaser-left">
-        <h3>Four plans. One platform. All AI-powered.</h3>
-        <p>From solo founders testing outreach to agencies managing hundreds of clients — AdoBoost scales with your volume. Includes AI inbox warmup, smart sequencing, IMAP sync, and campaign analytics on every plan.</p>
-        <div class="ab-tier-pills">
-          <span class="ab-tier-pill trial">Trial — Free</span>
-          <span class="ab-tier-pill starter">Starter</span>
-          <span class="ab-tier-pill pro">Professional</span>
-          <span class="ab-tier-pill agency">Agency</span>
+    <div class="ab-pricing-grid">
+      <div class="ab-card reveal">
+        <div class="ab-plan-name">Trial</div>
+        <div class="ab-price-row"><span class="ab-price">$0</span><span class="ab-per">/mo</span></div>
+        <p class="ab-desc">Try AdoBoost on a small list. No credit card needed.</p>
+        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">10</span></div>
+        <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started free</a>
+        <div class="ab-feats-lbl">Includes</div>
+        <div class="ab-feats">
+          <div class="ab-feat"><span class="ab-chk">✓</span>2 campaigns</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>200 contacts</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>1 email account</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>50 emails / day</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>AI inbox warmup</div>
         </div>
       </div>
-      <div class="ab-teaser-right">
-        <a href="adoboost.html#pricing" class="btn btn-primary">See AdoBoost Plans →</a>
-        <a href="https://app.adobosolutions.com/register" class="btn btn-glass">Try for Free</a>
+      <div class="ab-card reveal delay-1">
+        <div class="ab-plan-name">Starter</div>
+        <div class="ab-price-row"><span class="ab-price">$29</span><span class="ab-per">/mo</span></div>
+        <p class="ab-desc">For solo founders running consistent outreach.</p>
+        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">100</span></div>
+        <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started</a>
+        <div class="ab-feats-lbl">Includes</div>
+        <div class="ab-feats">
+          <div class="ab-feat"><span class="ab-chk">✓</span>10 campaigns</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>3,000 contacts</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>3 email accounts</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>500 emails / day</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>IMAP inbox sync</div>
+        </div>
+      </div>
+      <div class="ab-card pop reveal delay-2">
+        <div class="ab-pop-tag">Most Popular</div>
+        <div class="ab-plan-name">Professional</div>
+        <div class="ab-price-row"><span class="ab-price">$79</span><span class="ab-per">/mo</span></div>
+        <p class="ab-desc">For growing teams with high volume and API needs.</p>
+        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">1,000</span></div>
+        <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started</a>
+        <div class="ab-feats-lbl">Everything in Starter, plus</div>
+        <div class="ab-feats">
+          <div class="ab-feat"><span class="ab-chk">✓</span>50 campaigns</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>15,000 contacts</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>6 email accounts</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>2,000 emails / day</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>Inbox rotation + API</div>
+        </div>
+      </div>
+      <div class="ab-card agency reveal delay-3">
+        <div class="ab-plan-name">Agency</div>
+        <div class="ab-price-row"><span class="ab-price" style="color:#a78bfa">$299</span><span class="ab-per">/mo</span></div>
+        <p class="ab-desc">Or get it FREE with our Lead Gen VA program.</p>
+        <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">Unlimited</span></div>
+        <a href="contact.html" class="ab-btn" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#4ade80">Get it FREE →</a>
+        <div class="ab-feats-lbl">Everything in Pro, plus</div>
+        <div class="ab-feats">
+          <div class="ab-feat"><span class="ab-chk">✓</span>Unlimited campaigns</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>250,000 contacts</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>Unlimited email accounts</div>
+          <div class="ab-feat"><span class="ab-chk">✓</span>White-label + sub-accounts</div>
+        </div>
       </div>
     </div>
   </div>
