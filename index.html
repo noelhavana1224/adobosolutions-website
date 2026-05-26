@@ -35,11 +35,31 @@
     }
     .hero-text { max-width: 680px; }
     .hero-text .pill { margin-bottom: 22px; }
-    .hero-text h1 { color: #fff; margin-bottom: 22px; }
+    .hero-text h1 { color: #fff; margin-bottom: 22px; overflow: visible; }
+    /* fix gradient-text clip on "AI-Powered" */
+    .hero-text h1 .grad-text { padding-right: 6px; }
     .hero-text .subhead { color: rgba(255,255,255,0.72); margin-bottom: 32px; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
     .hero-trust { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.42); }
     .hero-trust-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+
+    /* Floating stat badges */
+    .stat-badge {
+      position: absolute; z-index: 2;
+      background: rgba(5,12,28,0.80);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px; padding: 12px 18px;
+      backdrop-filter: blur(16px);
+      display: flex; align-items: center; gap: 12px;
+      animation: floatB 5s ease-in-out infinite;
+    }
+    .stat-badge-1 { bottom: 160px; right: 48px; animation-duration: 6s; }
+    .stat-badge-2 { bottom: 76px; right: 48px; animation-duration: 5s; animation-delay: 1.2s; }
+    .sb-icon { font-size: 20px; }
+    .sb-val { font-size: 22px; font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+    .sb-lbl { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @media (max-width: 768px) { .stat-badge { display: none; } }
 
     /* ── TRUST BAR ── */
     #trust-bar { background: var(--navy-3); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 22px 0; }
@@ -245,7 +265,7 @@
     <div class="hero-text">
       <span class="pill pill-gold">Filipino VA Agency · Philippines-Based</span>
       <h1>Filipino VAs.<br><em class="grad-text">AI-Powered</em> Results.</h1>
-      <p class="subhead">From cold email outreach to medical billing — our Filipino virtual assistants handle the work while AI handles the tools. Do more. Pay less. Sleep better.</p>
+      <p class="subhead">We build and run your outbound engine. Cold email sequences, lead research, follow-ups, and booked calls — our trained Filipino VAs handle the full pipeline while AI handles the tools. More leads. Less overhead.</p>
       <div class="hero-actions">
         <a href="contact.html" class="btn btn-primary btn-lg">Hire a VA Now →</a>
         <a href="services.html" class="btn btn-outline-w btn-lg">See All Services</a>
@@ -259,6 +279,22 @@
         <span class="hero-trust-dot"></span>
         <span>48-Hr Onboarding</span>
       </div>
+    </div>
+  </div>
+
+  <!-- Floating stat badges -->
+  <div class="stat-badge stat-badge-1">
+    <div class="sb-icon">⚡</div>
+    <div>
+      <div class="sb-val" style="color:#4ade80">48h</div>
+      <div class="sb-lbl">Onboarding time</div>
+    </div>
+  </div>
+  <div class="stat-badge stat-badge-2">
+    <div class="sb-icon">🌏</div>
+    <div>
+      <div class="sb-val" style="color:#f59e0b">10+</div>
+      <div class="sb-lbl">Industries served</div>
     </div>
   </div>
 </section>
