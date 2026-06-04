@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="referrer" content="no-referrer" />
+<title>AdoBoost + Adobo Solutions — Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --navy:#020817; --navy2:#070f1f; --navy3:#0c1829;
+    --blue:#2563eb; --blue-l:#3b82f6; --purple:#7c3aed; --gold:#FCD116; --green:#22c55e;
+    --text:#f1f5f9; --text2:#cbd5e1; --text3:#94a3b8;
+    --border:rgba(255,255,255,.09); --border2:rgba(255,255,255,.16);
+    --glass:rgba(255,255,255,.04);
+    --grad:linear-gradient(135deg,#2563eb,#7c3aed);
+  }
+  html,body{height:100%}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    background:#05060a; color:var(--text); overflow:hidden;
+  }
+  /* ── Deck ── */
+  .deck{position:relative;width:100vw;height:100vh}
+  .slide{
+    position:absolute; inset:0; display:none;
+    flex-direction:column; justify-content:center;
+    padding:64px 80px;
+    background:linear-gradient(160deg,#020817 0%,#050d20 38%,#0a0a25 68%,#050d1a 100%);
+    overflow:hidden;
+  }
+  .slide.active{display:flex; animation:fade .5s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .slide::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 70% 30%,rgba(37,99,235,.16) 0%,transparent 55%),
+      radial-gradient(ellipse at 12% 78%,rgba(124,58,237,.13) 0%,transparent 52%);
+  }
+  .slide::after{
+    content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:
+      linear-gradient(rgba(59,130,246,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(59,130,246,.05) 1px,transparent 1px);
+    background-size:54px 54px;
+  }
+  .inner{position:relative;z-index:2;max-width:1080px;width:100%;margin:0 auto}
+
+  /* ── Type ── */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.32);
+    border-radius:100px;padding:6px 15px;margin-bottom:26px;
+    font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue-l);
+  }
+  .eyebrow.gold{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.32);color:var(--gold)}
+  h1{font-size:clamp(40px,6vw,78px);font-weight:900;letter-spacing:-2.5px;line-height:1.02;margin-bottom:22px}
+  h2{font-size:clamp(30px,4.4vw,52px);font-weight:800;letter-spacing:-1.4px;line-height:1.08;margin-bottom:18px}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .gold-t{color:var(--gold)}
+  .lead{font-size:clamp(16px,1.7vw,21px);color:var(--text2);line-height:1.65;max-width:760px}
+  .small{font-size:14px;color:var(--text3)}
+
+  /* ── Grids / cards ── */
+  .grid{display:grid;gap:18px;margin-top:38px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .card{
+    background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:24px 22px;
+  }
+  .card .ico{font-size:26px;display:block;margin-bottom:12px}
+  .card h3{font-size:16px;font-weight:700;margin-bottom:7px;letter-spacing:-.2px}
+  .card p{font-size:13.5px;color:var(--text3);line-height:1.55}
+
+  .check{display:flex;flex-direction:column;gap:15px;margin-top:34px;max-width:780px}
+  .check .row{display:flex;gap:13px;align-items:flex-start}
+  .dot{width:22px;height:22px;border-radius:50%;flex-shrink:0;margin-top:1px;
+    background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--blue-l)}
+  .check .row p{font-size:15.5px;color:var(--text2);line-height:1.5}
+  .check .row p b{color:#fff}
+
+  /* pills */
+  .pills{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
+  .pill{background:rgba(255,255,255,.05);border:1px solid var(--border2);border-radius:100px;
+    padding:9px 18px;font-size:14px;font-weight:600;color:var(--text2)}
+
+  /* stats */
+  .stats{display:flex;gap:46px;margin-top:42px;flex-wrap:wrap}
+  .stat .n{font-size:46px;font-weight:900;line-height:1;background:var(--grad);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .stat .l{font-size:13px;color:var(--text3);font-weight:600;margin-top:7px}
+
+  /* pricing */
+  .price{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:36px}
+  .ptier{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:22px 18px}
+  .ptier.pop{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.18)}
+  .ptier .pn{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:8px}
+  .ptier .pp{font-size:34px;font-weight:900;letter-spacing:-1.5px}
+  .ptier .pp span{font-size:14px;color:var(--text3);font-weight:500}
+  .ptier ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:7px}
+  .ptier li{font-size:12.5px;color:var(--text2);display:flex;gap:7px}
+  .ptier li::before{content:'✓';color:var(--green);font-weight:800}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;margin-top:10px}
+
+  /* logo */
+  .logo{font-family:Georgia,serif;font-weight:800;font-size:30px;letter-spacing:-1px}
+  .logo .b{color:var(--gold)}
+  .logo-sub{font-size:11px;letter-spacing:3px;color:var(--text3);text-transform:uppercase;margin-top:4px}
+
+  /* ── Controls ── */
+  .ctrl{position:fixed;bottom:24px;right:28px;z-index:50;display:flex;align-items:center;gap:12px}
+  .nav-btn{width:42px;height:42px;border-radius:11px;border:1px solid var(--border2);
+    background:rgba(255,255,255,.06);color:#fff;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:.15s}
+  .nav-btn:hover{background:rgba(255,255,255,.14)}
+  .counter{font-size:13px;color:var(--text3);font-weight:600;min-width:48px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:60;transition:width .35s ease}
+  .hint{position:fixed;bottom:28px;left:28px;z-index:50;font-size:12px;color:var(--text3)}
+  .hint kbd{background:rgba(255,255,255,.08);border:1px solid var(--border2);border-radius:5px;padding:2px 7px;font-family:inherit;font-size:11px}
+
+  @media (max-width:760px){
+    .slide{padding:40px 26px}
+    .g2,.g3,.g4,.price,.two{grid-template-columns:1fr}
+    .stats{gap:26px}
+  }
+
+  /* ── App screenshot mockups ── */
+  .shot{max-width:900px;margin:28px auto 0;width:100%}
+  .browser{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.12)}
+  .bbar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#eef2f7;border-bottom:1px solid #e2e8f0}
+  .bdot{width:11px;height:11px;border-radius:50%}
+  .burl{margin-left:12px;flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:5px 12px;font-size:12px;color:#64748b}
+  .app{background:#f8fafc;padding:20px;color:#0f172a;text-align:left}
+  .app-h{font-size:15px;font-weight:800;color:#0f172a;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+  .mtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .mtile{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px}
+  .mtile .lab{font-size:12px;font-weight:700;color:#334155;margin-bottom:8px}
+  .mtile .big{font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1}
+  .mtile .sub{font-size:11px;color:#64748b;margin-top:4px}
+  .mbar{height:6px;background:#eef2f7;border-radius:99px;overflow:hidden;margin-top:9px}
+  .mbar>i{display:block;height:100%;border-radius:99px}
+  .mstats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+  .mstat{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center}
+  .mstat .v{font-size:18px;font-weight:800}
+  .mstat .k{font-size:10px;color:#64748b;margin-top:2px}
+  .mlead{background:#fff;border:1px solid #e2e8f0;border-radius:11px;padding:11px 13px;display:flex;gap:11px;align-items:center;margin-bottom:9px}
+  .mav{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0}
+  .mlead .nm{font-size:13px;font-weight:700;color:#0f172a}
+  .mlead .em{font-size:11px;color:#64748b}
+  .mbadge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;border:1px solid;white-space:nowrap}
+  .b-int{background:#fff5f5;color:#dc2626;border-color:#fca5a5}
+  .b-pos{background:#f0fff4;color:#16a34a;border-color:#86efac}
+  .mdom{background:#fff;border:1px solid #e2e8f0;border-radius:11px;padding:12px 14px;margin-bottom:9px}
+  .mchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .mchip{font-size:10px;padding:2px 8px;border-radius:7px;background:#f0fff4;color:#16a34a;border:1px solid #bbf7d0;font-weight:600}
+  .mab{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .mvar{border:2px solid #e2e8f0;border-radius:11px;padding:14px;background:#fff;position:relative}
+  .mvar.win{border-color:#16a34a;background:#f0fff4}
+  .mvar .wt{position:absolute;top:-9px;right:10px;background:#16a34a;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:9px}
+  .mvar .vl{font-size:10px;font-weight:700;color:#7c3aed}
+  .mvar .vs{font-size:12px;font-weight:600;margin:5px 0 11px;color:#0f172a}
+  .mvm{display:flex;gap:16px}
+  .mvm .n{font-size:18px;font-weight:800}
+  .mvm .l{font-size:9px;color:#64748b}
+  .cap{text-align:center;font-size:14px;color:var(--text3);margin-top:22px}
+  .cap b{color:#fff}
+
+  /* ── PRINT → PDF (each slide a page) ── */
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    body{overflow:visible;background:#020817}
+    .deck{height:auto}
+    .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;break-after:page}
+    .ctrl,.hint,.progress{display:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide active">
+    <div class="inner">
+      <div class="logo">ado<span class="b">boost</span></div>
+      <div class="logo-sub">by Adobo Solutions</div>
+      <h1 style="margin-top:40px">Cold outreach that<br><span class="grad">books meetings.</span></h1>
+      <p class="lead">An all-in-one cold email platform — built-in inbox warmup, email verification, AI, and deliverability monitoring — backed by a team of trained virtual assistants who run it for you.</p>
+      <div class="stats">
+        <div class="stat"><div class="n">62%</div><div class="l">Avg. Open Rate</div></div>
+        <div class="stat"><div class="n">18%</div><div class="l">Avg. Reply Rate</div></div>
+        <div class="stat"><div class="n">98%</div><div class="l">Deliverability</div></div>
+        <div class="stat"><div class="n">48h</div><div class="l">To First Send</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 PROBLEM -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">The Problem</div>
+      <h2>Most cold email <span class="grad">never reaches the inbox.</span></h2>
+      <div class="grid g3">
+        <div class="card"><span class="ico">📉</span><h3>Landing in spam</h3><p>New domains and cold sends get filtered before anyone ever sees them. You're flying blind.</p></div>
+        <div class="card"><span class="ico">📭</span><h3>Bad data, hard bounces</h3><p>Invalid emails bounce, wrecking your sender reputation and dragging the whole domain down.</p></div>
+        <div class="card"><span class="ico">⏰</span><h3>No time to manage it</h3><p>Warmup, list cleaning, follow-ups, replies — it's a full-time job most teams can't staff.</p></div>
+      </div>
+      <p class="lead" style="margin-top:34px">AdoBoost fixes the deliverability problem with software — then our VAs handle the work.</p>
+    </div>
+  </section>
+
+  <!-- 3 WHAT IS ADOBOOST -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">The Platform</div>
+      <h2>What is <span class="grad">AdoBoost?</span></h2>
+      <p class="lead">A complete cold email engine designed around one goal: getting your emails seen and replied to — not buried in spam.</p>
+      <div class="check">
+        <div class="row"><div class="dot">✓</div><p><b>Connect unlimited inboxes</b> — send across many accounts with smart rotation.</p></div>
+        <div class="row"><div class="dot">✓</div><p><b>Multi-step sequences</b> — automated follow-ups timed like a real person.</p></div>
+        <div class="row"><div class="dot">✓</div><p><b>Unified inbox</b> — every reply from every account in one place.</p></div>
+        <div class="row"><div class="dot">✓</div><p><b>Real-time analytics</b> — opens, clicks, replies, bounces, and inbox health.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 DELIVERABILITY SUITE -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Built to Land in the Inbox</div>
+      <h2>The <span class="grad">deliverability suite</span></h2>
+      <div class="grid g4">
+        <div class="card"><span class="ico">🔥</span><h3>Community Inbox Warmup</h3><p>Inboxes warmed daily through our network — real opens & replies that build sender reputation.</p></div>
+        <div class="card"><span class="ico">✅</span><h3>Email Verification</h3><p>Every contact checked before sending. Invalid addresses removed — near-zero bounces.</p></div>
+        <div class="card"><span class="ico">🛡️</span><h3>Blacklist Monitoring</h3><p>Your domains checked against major blocklists around the clock, before problems cost you replies.</p></div>
+        <div class="card"><span class="ico">🔄</span><h3>Smart Inbox Rotation</h3><p>Volume auto-routed to your healthiest inboxes and pulled back from any that dip.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 AI -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow gold">Powered by AI</div>
+      <h2>AI that does the <span class="gold-t">heavy lifting</span></h2>
+      <div class="grid g3">
+        <div class="card"><span class="ico">🧪</span><h3>Spam Score Test</h3><p>Score any email 1–10 for spam triggers before you send, with specific fixes.</p></div>
+        <div class="card"><span class="ico">✍️</span><h3>AI Writing & Rewrite</h3><p>Generate subject lines, full sequences, or rewrite copy in any tone — one click.</p></div>
+        <div class="card"><span class="ico">💬</span><h3>AI Reply Drafting</h3><p>Suggested human-sounding replies for every conversation in your inbox.</p></div>
+        <div class="card"><span class="ico">🏷️</span><h3>Auto Lead-Flagging</h3><p>AI reads every reply and flags it — Interested, Positive, Not now — automatically.</p></div>
+        <div class="card"><span class="ico">🔥</span><h3>Hot Leads Board</h3><p>Every interested reply auto-collected into one actionable list across all campaigns.</p></div>
+        <div class="card"><span class="ico">🆎</span><h3>A/B Subject Testing</h3><p>Split-test subjects 50/50 — AdoBoost picks the winner by open rate.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 WORKFLOW -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Seamless Workflow</div>
+      <h2>From send to <span class="grad">booked call</span></h2>
+      <div class="two">
+        <div class="check" style="margin-top:0">
+          <div class="row"><div class="dot">1</div><p><b>Connect & warm up</b> your inboxes automatically.</p></div>
+          <div class="row"><div class="dot">2</div><p><b>Verify your list</b> and launch a multi-step campaign.</p></div>
+          <div class="row"><div class="dot">3</div><p><b>AI flags hot leads</b> as replies come in.</p></div>
+          <div class="row"><div class="dot">4</div><p><b>Reply & book</b> from the unified inbox + calendar.</p></div>
+        </div>
+        <div class="pills">
+          <span class="pill">📥 Unified Inbox</span>
+          <span class="pill">🔥 Warmer Inbox</span>
+          <span class="pill">🔗 LinkedIn Outreach</span>
+          <span class="pill">📅 Booking Calendar</span>
+          <span class="pill">📊 Command-Center Dashboard</span>
+          <span class="pill">🛡️ Deliverability Monitoring</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE: DASHBOARD -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Product Tour</div>
+      <h2 style="font-size:34px;margin-bottom:6px">Your <span class="grad">command center</span></h2>
+      <div class="shot">
+        <div class="browser">
+          <div class="bbar"><span class="bdot" style="background:#ff5f57"></span><span class="bdot" style="background:#febc2e"></span><span class="bdot" style="background:#28c840"></span><span class="burl">app.adobosolutions.com/dashboard</span></div>
+          <div class="app">
+            <div class="mstats">
+              <div class="mstat"><div class="v" style="color:#2563eb">2,480</div><div class="k">Sent</div></div>
+              <div class="mstat"><div class="v" style="color:#0891b2">62%</div><div class="k">Open Rate</div></div>
+              <div class="mstat"><div class="v" style="color:#16a34a">14%</div><div class="k">Click Rate</div></div>
+              <div class="mstat"><div class="v" style="color:#7c3aed">18%</div><div class="k">Reply Rate</div></div>
+              <div class="mstat"><div class="v" style="color:#dc2626">0.6%</div><div class="k">Bounce</div></div>
+            </div>
+            <div class="mtiles">
+              <div class="mtile"><div class="lab">🔥 Hot Leads</div><div class="big" style="color:#dc2626">23</div><div class="sub"><b>15</b> interested · <b>8</b> positive</div></div>
+              <div class="mtile"><div class="lab">💪 Inbox Health</div><div class="big" style="color:#16a34a">75%</div><div class="mbar"><i style="width:75%;background:#16a34a"></i></div><div class="sub">16 of 17 inboxes warming up</div></div>
+              <div class="mtile"><div class="lab">🛡️ Domain Reputation</div><div class="big" style="font-size:18px;color:#16a34a;margin-top:6px">✅ All clean</div><div class="sub">5 sending domains monitored</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Deliverability, lead flow, and inbox health — <b>the moment you log in.</b></div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE: HOT LEADS -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Product Tour</div>
+      <h2 style="font-size:34px;margin-bottom:6px">Hot leads, <span class="grad">auto-collected</span></h2>
+      <div class="shot">
+        <div class="browser">
+          <div class="bbar"><span class="bdot" style="background:#ff5f57"></span><span class="bdot" style="background:#febc2e"></span><span class="bdot" style="background:#28c840"></span><span class="burl">app.adobosolutions.com/leads</span></div>
+          <div class="app">
+            <div class="app-h">🔥 Hot Leads <span style="font-size:11px;font-weight:600;color:#64748b">— AI-flagged across all campaigns</span></div>
+            <div class="mlead"><div class="mav" style="background:#6366f1">SC</div><div style="flex:1"><div class="nm">Sarah Chen · Acme Logistics</div><div class="em">"Yes — what does your calendar look like this week?"</div></div><span class="mbadge b-int">🔥 Interested</span></div>
+            <div class="mlead"><div class="mav" style="background:#ec4899">MR</div><div style="flex:1"><div class="nm">Marcus Reed · Northwind SaaS</div><div class="em">"Sounds interesting, can you send pricing?"</div></div><span class="mbadge b-int">🔥 Interested</span></div>
+            <div class="mlead"><div class="mav" style="background:#10b981">JT</div><div style="flex:1"><div class="nm">Jenna Tan · BrightPath</div><div class="em">"Thanks for reaching out — happy to learn more."</div></div><span class="mbadge b-pos">👍 Positive</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="cap">AI reads every reply and surfaces the ones worth your time. <b>No more digging.</b></div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE: DELIVERABILITY -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Product Tour</div>
+      <h2 style="font-size:34px;margin-bottom:6px">Know your <span class="grad">domain health</span></h2>
+      <div class="shot">
+        <div class="browser">
+          <div class="bbar"><span class="bdot" style="background:#ff5f57"></span><span class="bdot" style="background:#febc2e"></span><span class="bdot" style="background:#28c840"></span><span class="burl">app.adobosolutions.com/deliverability</span></div>
+          <div class="app">
+            <div class="app-h">🛡️ Blacklist Monitor <span style="font-size:11px;font-weight:600;color:#16a34a">— auto-scanned every 12h</span></div>
+            <div class="mdom">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <div><div class="nm" style="font-size:13px;font-weight:700">🌐 adobosolutions.pro</div><div class="em" style="font-size:11px;color:#64748b">185.199.109.153</div></div>
+                <span style="font-size:13px;font-weight:800;color:#16a34a">All clear</span>
+              </div>
+              <div class="mchips"><span class="mchip">Spamhaus ✓</span><span class="mchip">Barracuda ✓</span><span class="mchip">SpamCop ✓</span><span class="mchip">SURBL ✓</span></div>
+            </div>
+            <div class="mdom">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <div><div class="nm" style="font-size:13px;font-weight:700">🌐 mynexxis.net</div><div class="em" style="font-size:11px;color:#64748b">192.64.119.254</div></div>
+                <span style="font-size:13px;font-weight:800;color:#16a34a">All clear</span>
+              </div>
+              <div class="mchips"><span class="mchip">Spamhaus ✓</span><span class="mchip">Barracuda ✓</span><span class="mchip">SpamCop ✓</span><span class="mchip">SURBL ✓</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Catch a blacklisting before it tanks your replies — <b>not after.</b></div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE: A/B TEST -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Product Tour</div>
+      <h2 style="font-size:34px;margin-bottom:6px">Test subjects, <span class="grad">pick the winner</span></h2>
+      <div class="shot">
+        <div class="browser">
+          <div class="bbar"><span class="bdot" style="background:#ff5f57"></span><span class="bdot" style="background:#febc2e"></span><span class="bdot" style="background:#28c840"></span><span class="burl">app.adobosolutions.com/campaigns</span></div>
+          <div class="app">
+            <div class="app-h">🧪 A/B Subject Test <span style="font-size:11px;font-weight:600;color:#64748b">— Initial Email</span></div>
+            <div class="mab">
+              <div class="mvar">
+                <div class="vl">Subject A</div>
+                <div class="vs">"Quick question about {{company}}"</div>
+                <div class="mvm"><div><div class="n">240</div><div class="l">sent</div></div><div><div class="n" style="color:#0891b2">54%</div><div class="l">open</div></div><div><div class="n" style="color:#7c3aed">11%</div><div class="l">reply</div></div></div>
+              </div>
+              <div class="mvar win">
+                <span class="wt">🏆 WINNER</span>
+                <div class="vl">Subject B</div>
+                <div class="vs">"{{first_name}}, worth a 15-min chat?"</div>
+                <div class="mvm"><div><div class="n">240</div><div class="l">sent</div></div><div><div class="n" style="color:#0891b2">68%</div><div class="l">open</div></div><div><div class="n" style="color:#7c3aed">19%</div><div class="l">reply</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Split 50/50 automatically — AdoBoost calls the winner by open rate.</div>
+    </div>
+  </section>
+
+  <!-- 7 PRICING -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Self-Serve Plans</div>
+      <h2>Simple, scalable <span class="grad">pricing</span></h2>
+      <div class="price">
+        <div class="ptier">
+          <div class="pn">Starter</div>
+          <div class="pp">$29<span>/mo</span></div>
+          <ul><li>3 inboxes</li><li>500 emails/day</li><li>Email verification</li><li>Blacklist monitoring</li></ul>
+        </div>
+        <div class="ptier pop">
+          <div class="pn" style="color:#93c5fd">Professional</div>
+          <div class="pp">$79<span>/mo</span></div>
+          <ul><li>25 inboxes</li><li>2,000 emails/day</li><li>Smart rotation + API</li><li>LinkedIn outreach</li></ul>
+        </div>
+        <div class="ptier">
+          <div class="pn" style="color:#c4b5fd">Agency</div>
+          <div class="pp">$299<span>/mo</span></div>
+          <ul><li>Unlimited inboxes</li><li>White-label</li><li>Sub-accounts</li><li>Dedicated support</li></ul>
+        </div>
+        <div class="ptier" style="border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.06)">
+          <div class="pn" style="color:#4ade80">Free with VA</div>
+          <div class="pp" style="font-size:26px">Included</div>
+          <ul><li>Hire a Lead-Gen VA</li><li>Get Agency free</li><li>VA runs your campaigns</li><li>You take the calls</li></ul>
+        </div>
+      </div>
+      <p class="small" style="margin-top:24px">14-day trial · no credit card required · cancel anytime</p>
+    </div>
+  </section>
+
+  <!-- 8 VA SERVICES -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow gold">🇵🇭 Adobo Solutions</div>
+      <h2>Your outreach team — <span class="gold-t">already hired.</span></h2>
+      <p class="lead">AdoBoost is powered by trained Filipino virtual assistants. Don't want to run it yourself? We do it all for you — done-for-you cold outreach, managed end to end.</p>
+      <div class="check">
+        <div class="row"><div class="dot">✓</div><p><b>We write the emails</b> — short, personal, tested copy that gets replies.</p></div>
+        <div class="row"><div class="dot">✓</div><p><b>We find & verify the leads</b> — matched to your ideal customer profile.</p></div>
+        <div class="row"><div class="dot">✓</div><p><b>We manage replies</b> — hot leads flagged and handed to you, ready to close.</p></div>
+        <div class="row"><div class="dot">✓</div><p><b>Daily reporting</b> — opens, replies, and booked calls every morning.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 VA OFFERINGS -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow gold">Beyond Outreach</div>
+      <h2>Trained VAs for <span class="gold-t">everything else, too</span></h2>
+      <p class="lead">Need more than cold email? Our team scales with your business — one trusted partner for your back office.</p>
+      <div class="pills">
+        <span class="pill">📋 Admin Support</span>
+        <span class="pill">🔍 Lead Research</span>
+        <span class="pill">📣 Social Media</span>
+        <span class="pill">💬 Customer Support</span>
+        <span class="pill">✍️ Content Writing</span>
+        <span class="pill">📅 Appointment Setting</span>
+        <span class="pill">📊 CRM Management</span>
+        <span class="pill">📞 Cold Calling</span>
+      </div>
+      <p class="lead" style="margin-top:34px">Trained, managed, and reliable — from <span class="gold-t">$4/hr</span>.</p>
+    </div>
+  </section>
+
+  <!-- 10 THE COMBO -->
+  <section class="slide">
+    <div class="inner">
+      <div class="eyebrow">Software + Human</div>
+      <h2>The unfair <span class="grad">advantage</span></h2>
+      <div class="grid g2">
+        <div class="card" style="padding:30px">
+          <span class="ico">⚙️</span>
+          <h3 style="font-size:19px">AdoBoost (the software)</h3>
+          <p style="font-size:14.5px">Handles deliverability automatically — warmup, verification, rotation, AI lead-flagging, analytics. The infrastructure that keeps you in the inbox.</p>
+        </div>
+        <div class="card" style="padding:30px;border-color:rgba(245,158,11,.3)">
+          <span class="ico">🤝</span>
+          <h3 style="font-size:19px">Adobo Solutions (the team)</h3>
+          <p style="font-size:14.5px">Trained VAs run the campaigns, write the copy, manage replies, and book the calls. The human touch that closes.</p>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:34px;text-align:center">Together: <b style="color:#fff">a done-for-you pipeline that fills your calendar — without you lifting a finger.</b></p>
+    </div>
+  </section>
+
+  <!-- 11 CTA -->
+  <section class="slide">
+    <div class="inner" style="text-align:center">
+      <div class="logo" style="display:inline-block">ado<span class="b">boost</span></div>
+      <div class="logo-sub">by Adobo Solutions</div>
+      <h1 style="margin-top:36px">Ready to fill<br><span class="grad">your calendar?</span></h1>
+      <p class="lead" style="margin:0 auto 38px">Try AdoBoost free, or let our team run it all for you. Live in 48 hours — no long contracts.</p>
+      <div class="pills" style="justify-content:center">
+        <span class="pill" style="background:var(--grad);border:none;color:#fff;font-weight:700">app.adobosolutions.com</span>
+        <span class="pill">hello@adobosolutions.com</span>
+        <span class="pill">adobosolutions.com</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- progress + controls -->
+<div class="hint">Use <kbd>←</kbd> <kbd>→</kbd> arrows · <kbd>F</kbd> fullscreen</div>
+<div class="ctrl">
+  <button class="nav-btn" onclick="go(-1)" title="Previous">‹</button>
+  <span class="counter" id="counter">1 / 15</span>
+  <button class="nav-btn" onclick="go(1)" title="Next">›</button>
+  <button class="pdf-btn" onclick="window.print()" title="Download as PDF">⬇ PDF</button>
+</div>
+<style>
+  .pdf-btn{margin-left:8px;height:42px;padding:0 16px;border-radius:11px;border:none;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:13px;font-weight:700;
+    cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(37,99,235,.4)}
+  .pdf-btn:hover{filter:brightness(1.1)}
+  @media print{.pdf-btn{display:none}}
+</style>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
+  }
+  function go(d){show(i+d)}
+  show(0);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')go(-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+    else if(e.key.toLowerCase()==='p')window.print();
+  });
+  // click right/left half to navigate
+  document.getElementById('deck').addEventListener('click',e=>{
+    if(e.target.closest('.nav-btn'))return;
+    go(e.clientX > window.innerWidth/2 ? 1 : -1);
+  });
+</script>
+</body>
+</html>
