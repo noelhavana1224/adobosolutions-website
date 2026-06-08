@@ -333,6 +333,10 @@
       <span class="pill pill-blue">AdoBoost</span>
       <h2 style="margin:14px 0 16px">Self-serve AdoBoost plans</h2>
       <p class="subhead">Prefer to run AdoBoost yourself? Pick a plan and start sending. All plans include AI features and inbox warmup.</p>
+      <div class="bill-toggle" style="display:inline-flex;align-items:center;gap:0;background:var(--glass);border:1px solid var(--border-2);border-radius:999px;padding:4px;margin-top:20px">
+        <button type="button" data-bill="monthly" class="bill-opt is-active" style="border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;padding:7px 18px;border-radius:999px;background:var(--blue);color:#fff;transition:all .18s">Monthly</button>
+        <button type="button" data-bill="annual" class="bill-opt" style="border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;padding:7px 18px;border-radius:999px;background:transparent;color:var(--text-2);transition:all .18s;display:flex;align-items:center;gap:7px">Annual <span style="font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:rgba(34,197,94,0.18);color:#4ade80">2 MONTHS FREE</span></button>
+      </div>
     </div>
     <div class="ab-pricing-grid">
       <div class="ab-card reveal">
@@ -352,7 +356,8 @@
       </div>
       <div class="ab-card reveal delay-1">
         <div class="ab-plan-name">Starter</div>
-        <div class="ab-price-row"><span class="ab-price">$29</span><span class="ab-per">/mo</span></div>
+        <div class="ab-price-row"><span class="ab-price js-price" data-m="$29" data-a="$290">$29</span><span class="ab-per js-per">/mo</span></div>
+        <div class="js-save" data-save="Save $58/yr · $24/mo billed yearly" style="display:none;font-size:12px;color:#4ade80;font-weight:700;margin:-2px 0 8px"></div>
         <p class="ab-desc">For solo founders running consistent outreach.</p>
         <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">250</span></div>
         <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started</a>
@@ -369,7 +374,8 @@
       <div class="ab-card pop reveal delay-2">
         <div class="ab-pop-tag">Most Popular</div>
         <div class="ab-plan-name">Professional</div>
-        <div class="ab-price-row"><span class="ab-price">$79</span><span class="ab-per">/mo</span></div>
+        <div class="ab-price-row"><span class="ab-price js-price" data-m="$79" data-a="$790">$79</span><span class="ab-per js-per">/mo</span></div>
+        <div class="js-save" data-save="Save $158/yr · $66/mo billed yearly" style="display:none;font-size:12px;color:#4ade80;font-weight:700;margin:-2px 0 8px"></div>
         <p class="ab-desc">For growing teams that need high volume, API access, and LinkedIn outreach.</p>
         <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">1,000</span></div>
         <a href="https://app.adobosolutions.com/register" class="ab-btn">Get started</a>
@@ -386,7 +392,8 @@
       </div>
       <div class="ab-card agency reveal delay-3">
         <div class="ab-plan-name">Agency</div>
-        <div class="ab-price-row"><span class="ab-price" style="color:#a78bfa">$299</span><span class="ab-per">/mo</span></div>
+        <div class="ab-price-row"><span class="ab-price js-price" style="color:#a78bfa" data-m="$299" data-a="$2,990">$299</span><span class="ab-per js-per">/mo</span></div>
+        <div class="js-save" data-save="Save $598/yr · $249/mo billed yearly" style="display:none;font-size:12px;color:#4ade80;font-weight:700;margin:-2px 0 8px"></div>
         <p class="ab-desc">Or get it FREE with our Lead Gen VA program.</p>
         <div class="ab-credits"><span class="ab-credits-lbl">⚡ AI Credits / Month</span><span class="ab-credits-val">5,000</span></div>
         <a href="contact.html" class="ab-btn" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#4ade80">Get it FREE →</a>
@@ -485,6 +492,15 @@
   document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');});});
   const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  (function(){
+    function setBilling(mode){
+      document.querySelectorAll('.bill-opt').forEach(b=>{const on=b.getAttribute('data-bill')===mode;b.classList.toggle('is-active',on);b.style.background=on?'var(--blue)':'transparent';b.style.color=on?'#fff':'var(--text-2)';});
+      document.querySelectorAll('.js-price').forEach(el=>{const v=mode==='annual'?el.getAttribute('data-a'):el.getAttribute('data-m');if(v)el.textContent=v;});
+      document.querySelectorAll('.js-per').forEach(el=>{el.textContent=mode==='annual'?'/yr':'/mo';});
+      document.querySelectorAll('.js-save').forEach(el=>{if(mode==='annual'){el.textContent=el.getAttribute('data-save')||'';el.style.display='block';}else{el.style.display='none';}});
+    }
+    document.querySelectorAll('.bill-opt').forEach(b=>b.addEventListener('click',()=>setBilling(b.getAttribute('data-bill'))));
+  })();
 </script>
 </body>
 </html>
